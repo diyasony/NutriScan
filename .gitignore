@@ -1,0 +1,25 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Allow an example environment file if needed later
+!.env.example
+
+# Temporary files
+temp/
+tmp/
+temp_label.jpg
+
+# Editor and operating system files
+.vscode/
+.DS_Store
+Thumbs.db
