@@ -9,20 +9,101 @@ RISK_WEIGHTS = {"low": 0, "medium": 5, "high": 15, "unknown": 3}
 
 
 def extract_text_from_image(image_path):
-    """Run OCR on a food label photo and return raw extracted text."""
+    """Extract text from a food label while preserving line breaks."""
     import easyocr
+
     reader = easyocr.Reader(["en"])
-    results = reader.readtext(image_path, detail=0)
-    return " ".join(results)
+    results = reader.readtext(image_path, detail=0, paragraph=False)
+
+    return "\n".join(results)
 
 
 def clean_ingredient_text(raw_text):
-    """Turn messy OCR output into a clean list of ingredient strings."""
-    text = raw_text.lower()
-    text = re.sub(r"ingredients?\s*:?", "", text)
-    text = re.sub(r"[\(\)\[\]]", ",", text)
-    parts = re.split(r"[,;]", text)
-    ingredients = [p.strip() for p in parts if p.strip() and len(p.strip()) > 1]
+    """Extract likely ingredient names from OCR text."""
+
+    if not raw_text or not raw_text.strip():
+        return []
+
+    # Convert text to lowercase and normalize line endings.
+    text = raw_text.lower().replace("\r", "\n")
+
+    # Find the beginning of the ingredient section.
+    ingredient_match = re.search(
+        r"\bingredients?\s*[:\-]?\s*(.*)",
+        text,
+        flags=re.IGNORECASE | re.DOTALL
+    )
+
+    # If an ingredient heading is found, use the text after it.
+    if ingredient_match:
+        text = ingredient_match.group(1)
+
+    # Stop processing when common non-ingredient sections begin.
+    stop_patterns = [
+        r"\bnutritional information\b",
+        r"\bnutrition facts\b",
+        r"\bnutrition information\b",
+        r"\bamount per\b",
+        r"\ballergen information\b",
+        r"\ballergy information\b",
+        r"\bstorage instructions\b",
+        r"\bstorage\b",
+        r"\bnet weight\b",
+        r"\bmanufactured by\b",
+        r"\bmarketed by\b",
+        r"\bbest before\b",
+        r"\buse before\b",
+        r"\bcustomer care\b",
+        r"\bcustomer service\b",
+        r"\bexpiry date\b",
+        r"\bmanufacturing date\b",
+        r"\bbatch number\b",
+        r"\bbatch no\b",
+        r"\bmrp\b",
+    ]
+
+    for pattern in stop_patterns:
+        text = re.split(pattern, text, maxsplit=1)[0]
+
+    # Remove text inside parentheses.
+    text = re.sub(r"\([^)]*\)", " ", text)
+
+    # Split text into possible ingredient entries.
+    parts = re.split(r"[,;:\n]", text)
+
+    ingredients = []
+
+    for part in parts:
+        # Remove unnecessary punctuation around each entry.
+        item = part.strip(" \t.-•*")
+
+        # Ignore empty or very short entries.
+        if len(item) < 3:
+            continue
+
+        # Ignore entries that contain no letters.
+        if not re.search(r"[a-z]", item):
+            continue
+
+        # Ignore common nutrition labels and packaging information.
+        # Do not exclude the standalone word "sugar":
+        # sugar can be a genuine ingredient.
+        if re.search(
+            r"\b(energy|protein|total fat|saturated fat|trans fat|"
+            r"sodium|calcium|total carbohydrates|carbohydrates|"
+            r"cholesterol|kcal|kj|mg|serving|weight|volume|"
+            r"storage|expiry|manufactured|marketed|customer care)\b",
+            item
+        ):
+            continue
+
+        # Normalize spaces.
+        item = re.sub(r"\s+", " ", item).strip()
+
+        # Add each unique entry once.
+        if item and item not in ingredients:
+            ingredients.append(item)
+
     return ingredients
 
 
