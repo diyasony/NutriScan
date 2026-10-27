@@ -1,0 +1,1059 @@
+ingredient_name,category,parent_ingredient,variant_type
+sorbic acid,preservative,sorbic acid,name
+potassium metabisulphite,preservative,potassium metabisulphite,name
+nisin,preservative,nisin,name
+natamycin,preservative,natamycin,name
+acetic acid,preservative,acetic acid,name
+propionic acid,preservative,propionic acid,name
+sodium propionate,preservative,sodium propionate,name
+calcium propionate,preservative,calcium propionate,name
+natural colour,colorant,natural colour,name
+nature identical flavouring,spice_flavouring,nature identical flavouring,name
+added flavour,spice_flavouring,added flavour,name
+natural flavour,spice_flavouring,natural flavour,name
+wheat bran,cereal_pulse_nut,wheat bran,name
+black pepper,spice_flavouring,black pepper,name
+potato,other,potato,name
+tomato powder,spice_flavouring,tomato powder,name
+dehydrated vegetables,other,dehydrated vegetables,name
+water,other,water,name
+fruit pulp,other,fruit pulp,name
+fruit juice concentrate,other,fruit juice concentrate,name
+prawn,animal_derived,prawn,name
+cocoa solids,other,cocoa solids,name
+spices,spice_flavouring,spices,name
+chilli powder,spice_flavouring,chilli powder,name
+onion powder,spice_flavouring,onion powder,name
+garlic powder,spice_flavouring,garlic powder,name
+turmeric powder,spice_flavouring,turmeric powder,name
+milk fat,animal_derived,milk fat,name
+cream,animal_derived,cream,name
+cheese,animal_derived,cheese,name
+curd,animal_derived,curd,name
+egg,animal_derived,egg,name
+egg powder,animal_derived,egg powder,name
+fish,animal_derived,fish,name
+curcumin,colorant,curcumin,name
+riboflavin,colorant,riboflavin,name
+tartrazine,colorant,tartrazine,name
+quinoline yellow,colorant,quinoline yellow,name
+sunset yellow,colorant,sunset yellow,name
+almond,cereal_pulse_nut,almond,name
+soy flour,cereal_pulse_nut,soy flour,name
+soy protein,cereal_pulse_nut,soy protein,name
+soy lecithin,emulsifier,soy lecithin,name
+maltodextrin,sweetener,maltodextrin,name
+butter,animal_derived,butter,name
+ghee,animal_derived,ghee,name
+milk,animal_derived,milk,name
+wheat gluten,cereal_pulse_nut,wheat gluten,name
+semolina,cereal_pulse_nut,semolina,name
+rice flour,cereal_pulse_nut,rice flour,name
+corn flour,cereal_pulse_nut,corn flour,name
+besan,cereal_pulse_nut,besan,name
+oats,cereal_pulse_nut,oats,name
+groundnut,cereal_pulse_nut,groundnut,name
+cashew,cereal_pulse_nut,cashew,name
+baking powder,other,baking powder,name
+corn starch,other,corn starch,name
+peanut butter,cereal_pulse_nut,peanut butter,name
+modified food starch,thickener_stabilizer,modified food starch,name
+carbonated water,other,carbonated water,name
+sodium chloride,other,sodium chloride,name
+maida,cereal_pulse_nut,maida,name
+wheat flour,cereal_pulse_nut,wheat flour,name
+margarine,oil_fat,margarine,name
+vanaspati,oil_fat,vanaspati,name
+bakery shortening,oil_fat,bakery shortening,name
+cocoa butter,oil_fat,cocoa butter,name
+skimmed milk powder,animal_derived,skimmed milk powder,name
+milk solids,animal_derived,milk solids,name
+whey powder,animal_derived,whey powder,name
+casein,animal_derived,casein,name
+sodium caseinate,animal_derived,sodium caseinate,name
+yeast,other,yeast,name
+carmine,colorant,carmine,name
+carmoisine,colorant,carmoisine,name
+ponceau 4r,colorant,ponceau 4r,name
+erythrosine,colorant,erythrosine,name
+jaggery,sweetener,jaggery,name
+lactose,sweetener,lactose,name
+groundnut oil,oil_fat,groundnut oil,name
+palm oil,oil_fat,palm oil,name
+coconut oil,oil_fat,coconut oil,name
+sunflower oil,oil_fat,sunflower oil,name
+soyabean oil,oil_fat,soyabean oil,name
+rice bran oil,oil_fat,rice bran oil,name
+vegetable oils,oil_fat,vegetable oils,name
+calcium silicate,other,calcium silicate,name
+sodium ferrocyanide,other,sodium ferrocyanide,name
+potassium ferrocyanide,other,potassium ferrocyanide,name
+sugar,sweetener,sugar,name
+dextrose,sweetener,dextrose,name
+glucose syrup,sweetener,glucose syrup,name
+invert sugar,sweetener,invert sugar,name
+fructose,sweetener,fructose,name
+honey,sweetener,honey,name
+disodium guanylate,flavour_enhancer,disodium guanylate,name
+disodium inosinate,flavour_enhancer,disodium inosinate,name
+disodium ribonucleotides,flavour_enhancer,disodium ribonucleotides,name
+ethyl maltol,flavour_enhancer,ethyl maltol,name
+calcium carbonate,other,calcium carbonate,name
+silicon dioxide,other,silicon dioxide,name
+allura red,colorant,allura red,name
+indigotine,colorant,indigotine,name
+brilliant blue fcf,colorant,brilliant blue fcf,name
+chlorophyll,colorant,chlorophyll,name
+fast green fcf,colorant,fast green fcf,name
+sodium carbonate,acidity_regulator,sodium carbonate,name
+sodium hydrogen carbonate,acidity_regulator,sodium hydrogen carbonate,name
+potassium carbonate,acidity_regulator,potassium carbonate,name
+ammonium hydrogen carbonate,acidity_regulator,ammonium hydrogen carbonate,name
+glucono delta-lactone,acidity_regulator,glucono delta-lactone,name
+monosodium glutamate,flavour_enhancer,monosodium glutamate,name
+sodium citrates,acidity_regulator,sodium citrates,name
+potassium citrates,acidity_regulator,potassium citrates,name
+tartaric acid,acidity_regulator,tartaric acid,name
+phosphoric acid,acidity_regulator,phosphoric acid,name
+sodium phosphates,acidity_regulator,sodium phosphates,name
+potassium phosphates,acidity_regulator,potassium phosphates,name
+tertiary butylhydroquinone,antioxidant,tertiary butylhydroquinone,name
+butylated hydroxyanisole,antioxidant,butylated hydroxyanisole,name
+butylated hydroxytoluene,antioxidant,butylated hydroxytoluene,name
+lactic acid,acidity_regulator,lactic acid,name
+malic acid,acidity_regulator,malic acid,name
+fumaric acid,acidity_regulator,fumaric acid,name
+citric acid,acidity_regulator,citric acid,name
+acetylated distarch phosphate,thickener_stabilizer,acetylated distarch phosphate,name
+ascorbic acid,antioxidant,ascorbic acid,name
+sodium ascorbate,antioxidant,sodium ascorbate,name
+ascorbyl palmitate,antioxidant,ascorbyl palmitate,name
+mixed tocopherols,antioxidant,mixed tocopherols,name
+alpha-tocopherol,antioxidant,alpha-tocopherol,name
+propyl gallate,antioxidant,propyl gallate,name
+caramel,colorant,caramel,name
+caramel iii,colorant,caramel iii,name
+caramel iv,colorant,caramel iv,name
+carotenes,colorant,carotenes,name
+annatto extracts,colorant,annatto extracts,name
+gellan gum,thickener_stabilizer,gellan gum,name
+pectin,thickener_stabilizer,pectin,name
+microcrystalline cellulose,thickener_stabilizer,microcrystalline cellulose,name
+methyl cellulose,thickener_stabilizer,methyl cellulose,name
+sodium carboxymethyl cellulose,thickener_stabilizer,sodium carboxymethyl cellulose,name
+konjac flour,thickener_stabilizer,konjac flour,name
+acetylated distarch adipate,thickener_stabilizer,acetylated distarch adipate,name
+carrageenan,thickener_stabilizer,carrageenan,name
+carob bean gum,thickener_stabilizer,carob bean gum,name
+guar gum,thickener_stabilizer,guar gum,name
+gum arabic,thickener_stabilizer,gum arabic,name
+xanthan gum,thickener_stabilizer,xanthan gum,name
+tara gum,thickener_stabilizer,tara gum,name
+polysorbate 80,emulsifier,polysorbate 80,name
+sorbitan monostearate,emulsifier,sorbitan monostearate,name
+sucrose esters of fatty acids,emulsifier,sucrose esters of fatty acids,name
+alginic acid,thickener_stabilizer,alginic acid,name
+sodium alginate,thickener_stabilizer,sodium alginate,name
+agar,thickener_stabilizer,agar,name
+mono and diglycerides of fatty acids,emulsifier,mono and diglycerides of fatty acids,name
+diacetyltartric and fatty acid ester of glycerol,emulsifier,diacetyltartric and fatty acid ester of glycerol,name
+polyglycerol esters of fatty acid,emulsifier,polyglycerol esters of fatty acid,name
+sodium lactylate,emulsifier,sodium lactylate,name
+calcium lactylates,emulsifier,calcium lactylates,name
+polysorbate 20,emulsifier,polysorbate 20,name
+paprika oleoresins,colorant,paprika oleoresins,name
+beet red,colorant,beet red,name
+anthocyanins,colorant,anthocyanins,name
+titanium dioxide,colorant,titanium dioxide,name
+sorbitol,sweetener,sorbitol,name
+sucralose,sweetener,sucralose,name
+stevioside,sweetener,stevioside,name
+maltitol,sweetener,maltitol,name
+xylitol,sweetener,xylitol,name
+erythritol,sweetener,erythritol,name
+lecithin,emulsifier,lecithin,name
+mannitol,sweetener,mannitol,name
+acesulfame potassium,sweetener,acesulfame potassium,name
+aspartame,sweetener,aspartame,name
+cyclamate,sweetener,cyclamate,name
+isomalt,sweetener,isomalt,name
+saccharin,sweetener,saccharin,name
+potassium sorbate,preservative,potassium sorbate,name
+benzoic acid,preservative,benzoic acid,name
+sodium benzoate,preservative,sodium benzoate,name
+potassium benzoate,preservative,potassium benzoate,name
+sulphur dioxide,preservative,sulphur dioxide,name
+sodium hydrogen sulphite,preservative,sodium hydrogen sulphite,name
+sodium metabisulphite,preservative,sodium metabisulphite,name
+e120,colorant,carmine,alias
+caseinate,animal_derived,sodium caseinate,alias
+caseinates,animal_derived,sodium caseinate,alias
+baker's yeast,other,yeast,alias
+yeast (raising agent),other,yeast,alias
+milk solids non fat,animal_derived,milk solids,alias
+msnf,animal_derived,milk solids,alias
+whey,animal_derived,whey powder,alias
+sunset yellow fcf,colorant,sunset yellow,alias
+yellow 6,colorant,sunset yellow,alias
+colour (110),colorant,sunset yellow,alias
+ins 120,colorant,carmine,alias
+caseins,animal_derived,casein,alias
+carmines,colorant,carmine,alias
+colour (120),colorant,carmine,alias
+milk casein,animal_derived,casein,alias
+ponceau,colorant,ponceau 4r,alias
+azorubine,colorant,carmoisine,alias
+c.i. food red 3,colorant,carmoisine,alias
+e122,colorant,carmoisine,alias
+ins 122,colorant,carmoisine,alias
+azorubine / carmoisine,colorant,carmoisine,alias
+red 3,colorant,carmoisine,alias
+colour (122),colorant,carmoisine,alias
+refined sunflower oil,oil_fat,sunflower oil,alias
+palmolein,oil_fat,palm oil,alias
+palm oil/palmolein,oil_fat,palm oil,alias
+refined palm oil,oil_fat,palm oil,alias
+palm olein,oil_fat,palm oil,alias
+gur,sweetener,jaggery,alias
+cane jaggery,sweetener,jaggery,alias
+refined vegetable oil,oil_fat,vegetable oils,alias
+edible vegetable oils,oil_fat,vegetable oils,alias
+naryal ka tel,oil_fat,coconut oil,alias
+edible coconut oil,oil_fat,coconut oil,alias
+sunflower seed oil,oil_fat,sunflower oil,alias
+raising agent baking powder,other,baking powder,alias
+soybean oil,oil_fat,soyabean oil,alias
+soya oil,oil_fat,soyabean oil,alias
+whey protein,animal_derived,whey powder,alias
+whey protein concentrate,animal_derived,whey powder,alias
+sweet whey powder,animal_derived,whey powder,alias
+cocoa fat,oil_fat,cocoa butter,alias
+smp,animal_derived,skimmed milk powder,alias
+skim milk powder,animal_derived,skimmed milk powder,alias
+nonfat milk powder,animal_derived,skimmed milk powder,alias
+milk solid,animal_derived,milk solids,alias
+soya lecithin,emulsifier,soy lecithin,alias
+table margarine,oil_fat,margarine,alias
+bakery margarine,oil_fat,margarine,alias
+hydrogenated vegetable fat,oil_fat,vanaspati,alias
+vegetable fat,oil_fat,vanaspati,alias
+shortening,oil_fat,bakery shortening,alias
+refined wheat flour,cereal_pulse_nut,maida,alias
+refined flour,cereal_pulse_nut,maida,alias
+all purpose flour,cereal_pulse_nut,maida,alias
+clarified butter,animal_derived,ghee,alias
+desi ghee,animal_derived,ghee,alias
+butter oil,animal_derived,ghee,alias
+nacl,other,sodium chloride,alias
+lecithin (soy),emulsifier,soy lecithin,alias
+lecithin from soy,emulsifier,soy lecithin,alias
+malto dextrin,sweetener,maltodextrin,alias
+maltodextrins,sweetener,maltodextrin,alias
+wheat flour (atta),cereal_pulse_nut,wheat flour,alias
+vital wheat gluten,cereal_pulse_nut,wheat gluten,alias
+gluten,cereal_pulse_nut,wheat gluten,alias
+wheat protein,cereal_pulse_nut,wheat gluten,alias
+suji,cereal_pulse_nut,semolina,alias
+table butter,animal_derived,butter,alias
+modified starch,thickener_stabilizer,modified food starch,alias
+cornstarch,other,corn starch,alias
+corn flour starch,other,corn starch,alias
+maize starch,other,corn starch,alias
+peanut spread,cereal_pulse_nut,peanut butter,alias
+oatmeal,cereal_pulse_nut,oats,alias
+peanut,cereal_pulse_nut,groundnut,alias
+peanuts,cereal_pulse_nut,groundnut,alias
+edible salt,other,sodium chloride,alias
+iodised salt,other,sodium chloride,alias
+table salt,other,sodium chloride,alias
+modified food starches,thickener_stabilizer,modified food starch,alias
+ground nut oil,oil_fat,groundnut oil,alias
+soda water,other,carbonated water,alias
+carbonated drinking water,other,carbonated water,alias
+common salt,other,sodium chloride,alias
+wheat flour (maida),cereal_pulse_nut,maida,alias
+atta,cereal_pulse_nut,wheat flour,alias
+whole wheat flour,cereal_pulse_nut,wheat flour,alias
+wheat atta,cereal_pulse_nut,wheat flour,alias
+edible common salt,other,sodium chloride,alias
+food-grade salt,other,sodium chloride,alias
+salt,other,sodium chloride,alias
+silica,other,silicon dioxide,alias
+flavour enhancer (635),flavour_enhancer,disodium ribonucleotides,alias
+ins 637,flavour_enhancer,ethyl maltol,alias
+e637,flavour_enhancer,ethyl maltol,alias
+e627,flavour_enhancer,disodium guanylate,alias
+allurared ac/fast red e,colorant,allura red,alias
+allura red ac,colorant,allura red,alias
+red 40,colorant,allura red,alias
+flavour enhancer (637),flavour_enhancer,ethyl maltol,alias
+ins 170(i),other,calcium carbonate,alias
+e170(i),other,calcium carbonate,alias
+chalk (food grade),other,calcium carbonate,alias
+disodium 5'-ribonucleotides,flavour_enhancer,disodium ribonucleotides,alias
+e132,colorant,indigotine,alias
+indigo carmine,colorant,indigotine,alias
+colour (132),colorant,indigotine,alias
+ins 133,colorant,brilliant blue fcf,alias
+allurared ac,colorant,allura red,alias
+fast red e,colorant,allura red,alias
+ins 129,colorant,allura red,alias
+e129,colorant,allura red,alias
+synthetic amorphous silicon dioxide,other,silicon dioxide,alias
+silicon dioxide (anticaking agent),other,silicon dioxide,alias
+ins 552,other,calcium silicate,alias
+disodium 5'-guanylate,flavour_enhancer,disodium guanylate,alias
+acidity regulator (340),acidity_regulator,potassium phosphates,alias
+ins 500(i),acidity_regulator,sodium carbonate,alias
+e500(i),acidity_regulator,sodium carbonate,alias
+ins 503(ii),acidity_regulator,ammonium hydrogen carbonate,alias
+e503(ii),acidity_regulator,ammonium hydrogen carbonate,alias
+soda ash,acidity_regulator,sodium carbonate,alias
+washing soda (food grade),acidity_regulator,sodium carbonate,alias
+sodium bicarbonate,acidity_regulator,sodium hydrogen carbonate,alias
+ins 500(ii),acidity_regulator,sodium hydrogen carbonate,alias
+e500(ii),acidity_regulator,sodium hydrogen carbonate,alias
+baking soda,acidity_regulator,sodium hydrogen carbonate,alias
+e552,other,calcium silicate,alias
+flavour enhancer (627),flavour_enhancer,disodium guanylate,alias
+ins 631,flavour_enhancer,disodium inosinate,alias
+e631,flavour_enhancer,disodium inosinate,alias
+disodium 5'-inosinate,flavour_enhancer,disodium inosinate,alias
+flavour enhancer (631),flavour_enhancer,disodium inosinate,alias
+e621,flavour_enhancer,monosodium glutamate,alias
+monosodium l-glutamate,flavour_enhancer,monosodium glutamate,alias
+ins 551,other,silicon dioxide,alias
+ins 635,flavour_enhancer,disodium ribonucleotides,alias
+e635,flavour_enhancer,disodium ribonucleotides,alias
+coccine nouvelle,colorant,ponceau 4r,alias
+flavour enhancer (621),flavour_enhancer,monosodium glutamate,alias
+ins 627,flavour_enhancer,disodium guanylate,alias
+liquid glucose,sweetener,glucose syrup,alias
+dried glucose syrup,sweetener,glucose syrup,alias
+invert sugar syrup,sweetener,invert sugar,alias
+lb-rot-i,colorant,erythrosine,alias
+colour (127),colorant,erythrosine,alias
+ins 124,colorant,ponceau 4r,alias
+e124,colorant,ponceau 4r,alias
+cl food red 7,colorant,ponceau 4r,alias
+l-rot no.4,colorant,ponceau 4r,alias
+flavour enhancer (msg),flavour_enhancer,monosodium glutamate,alias
+cochineal red a,colorant,ponceau 4r,alias
+gur or jaggery,sweetener,jaggery,alias
+milk sugar,sweetener,lactose,alias
+moongh-phali-ka tel,oil_fat,groundnut oil,alias
+colour (124),colorant,ponceau 4r,alias
+ins 127,colorant,erythrosine,alias
+e127,colorant,erythrosine,alias
+fd and c red no.3,colorant,erythrosine,alias
+c.l. food red 14,colorant,erythrosine,alias
+peanut oil,oil_fat,groundnut oil,alias
+"silicon dioxide, amorphous",other,silicon dioxide,alias
+soya bean oil,oil_fat,soyabean oil,alias
+rice bran oil refined,oil_fat,rice bran oil,alias
+vegetable oil,oil_fat,vegetable oils,alias
+edible vegetable oil,oil_fat,vegetable oils,alias
+ins 535,other,sodium ferrocyanide,alias
+e535,other,sodium ferrocyanide,alias
+ins 536,other,potassium ferrocyanide,alias
+e536,other,potassium ferrocyanide,alias
+sucrose,sweetener,sugar,alias
+brown cane sugar,sweetener,sugar,alias
+e551,other,silicon dioxide,alias
+white butter,animal_derived,butter,alias
+invert syrup,sweetener,invert sugar,alias
+fructose syrup,sweetener,fructose,alias
+cane sugar,sweetener,sugar,alias
+plantation white sugar,sweetener,sugar,alias
+refined sugar,sweetener,sugar,alias
+sugar (sucrose),sweetener,sugar,alias
+glucose,sweetener,dextrose,alias
+dextrose monohydrate,sweetener,dextrose,alias
+msg,flavour_enhancer,monosodium glutamate,alias
+ajinomoto,flavour_enhancer,monosodium glutamate,alias
+wheat husk,cereal_pulse_nut,wheat bran,alias
+natural flavouring,spice_flavouring,natural flavour,alias
+natural flavouring substances,spice_flavouring,natural flavour,alias
+pepper,spice_flavouring,black pepper,alias
+black pepper powder,spice_flavouring,black pepper,alias
+potato flakes,other,potato,alias
+dehydrated potato,other,potato,alias
+dehydrated tomato,spice_flavouring,tomato powder,alias
+tomato solids,spice_flavouring,tomato powder,alias
+haldi,spice_flavouring,turmeric powder,alias
+haldi powder,spice_flavouring,turmeric powder,alias
+bran,cereal_pulse_nut,wheat bran,alias
+natural flavours,spice_flavouring,natural flavour,alias
+tomato,spice_flavouring,tomato powder,alias
+dried vegetables,other,dehydrated vegetables,alias
+vegetable flakes,other,dehydrated vegetables,alias
+mixed vegetables,other,dehydrated vegetables,alias
+drinking water,other,water,alias
+potable water,other,water,alias
+pepper powder,spice_flavouring,black pepper,alias
+potatoes,other,potato,alias
+juice concentrate,other,fruit juice concentrate,alias
+fruit juice,other,fruit juice concentrate,alias
+natural colours,colorant,natural colour,alias
+spice,spice_flavouring,spices,alias
+fish paste,animal_derived,fish,alias
+shrimp,animal_derived,prawn,alias
+prawns,animal_derived,prawn,alias
+shrimp powder,animal_derived,prawn,alias
+red chilli powder,spice_flavouring,chilli powder,alias
+chili powder,spice_flavouring,chilli powder,alias
+chilli,spice_flavouring,chilli powder,alias
+red chilli,spice_flavouring,chilli powder,alias
+dehydrated onion,spice_flavouring,onion powder,alias
+cocoa,other,cocoa solids,alias
+cocoa solid,other,cocoa solids,alias
+natural colouring,colorant,natural colour,alias
+milk fat (amf),animal_derived,milk fat,alias
+onion flakes,spice_flavouring,onion powder,alias
+dried onion,spice_flavouring,onion powder,alias
+dehydrated garlic,spice_flavouring,garlic powder,alias
+garlic flakes,spice_flavouring,garlic powder,alias
+dried garlic,spice_flavouring,garlic powder,alias
+turmeric,spice_flavouring,turmeric powder,alias
+seasoning,spice_flavouring,spices,alias
+flavour,spice_flavouring,added flavour,alias
+flavouring,spice_flavouring,added flavour,alias
+ins 222,preservative,sodium hydrogen sulphite,alias
+e202,preservative,potassium sorbate,alias
+ins 212,preservative,potassium benzoate,alias
+e212,preservative,potassium benzoate,alias
+preservative (212),preservative,potassium benzoate,alias
+ins 220,preservative,sulphur dioxide,alias
+benzole acid,preservative,benzoic acid,alias
+ins 210,preservative,benzoic acid,alias
+e210,preservative,benzoic acid,alias
+benzoic acid (preservative),preservative,benzoic acid,alias
+preservative (235),preservative,natamycin,alias
+preservative (220),preservative,sulphur dioxide,alias
+ins 202,preservative,potassium sorbate,alias
+e222,preservative,sodium hydrogen sulphite,alias
+preservative (222),preservative,sodium hydrogen sulphite,alias
+ins 223,preservative,sodium metabisulphite,alias
+benzoate,preservative,sodium benzoate,alias
+preservative (211),preservative,sodium benzoate,alias
+preservative (224),preservative,potassium metabisulphite,alias
+ins 234,preservative,nisin,alias
+ins 200,preservative,sorbic acid,alias
+ins 280,preservative,propionic acid,alias
+e220,preservative,sulphur dioxide,alias
+e953,sweetener,isomalt,alias
+permitted natural colour,colorant,natural colour,alias
+permitted natural colours,colorant,natural colour,alias
+nature identical flavouring substances,spice_flavouring,nature identical flavouring,alias
+nature identical flavour,spice_flavouring,nature identical flavouring,alias
+nature-identical flavouring,spice_flavouring,nature identical flavouring,alias
+added flavours,spice_flavouring,added flavour,alias
+artificial flavour,spice_flavouring,added flavour,alias
+artificial flavouring substances,spice_flavouring,added flavour,alias
+orange juice concentrate,other,fruit juice concentrate,alias
+ins 224,preservative,potassium metabisulphite,alias
+ins 953,sweetener,isomalt,alias
+spice mix,spice_flavouring,spices,alias
+isomalt (isomaltitol),sweetener,isomalt,alias
+sweetener (953),sweetener,isomalt,alias
+ins 954,sweetener,saccharin,alias
+e954,sweetener,saccharin,alias
+"saccharin (and na, k, ca salts)",sweetener,saccharin,alias
+preservative (210),preservative,benzoic acid,alias
+ins 211,preservative,sodium benzoate,alias
+e211,preservative,sodium benzoate,alias
+e200,preservative,sorbic acid,alias
+preservative (200),preservative,sorbic acid,alias
+kaju,cereal_pulse_nut,cashew,alias
+e101,colorant,riboflavin,alias
+riboflavins,colorant,riboflavin,alias
+colour (104),colorant,quinoline yellow,alias
+ins 110,colorant,sunset yellow,alias
+e110,colorant,sunset yellow,alias
+ins 102,colorant,tartrazine,alias
+e102,colorant,tartrazine,alias
+fd and c yellow no.5,colorant,tartrazine,alias
+l-gebb 2,colorant,tartrazine,alias
+c.i. food yellow 4,colorant,tartrazine,alias
+cashews,cereal_pulse_nut,cashew,alias
+ins 101,colorant,riboflavin,alias
+almonds,cereal_pulse_nut,almond,alias
+badam,cereal_pulse_nut,almond,alias
+almond pieces,cereal_pulse_nut,almond,alias
+colour (102),colorant,tartrazine,alias
+ins 104,colorant,quinoline yellow,alias
+e104,colorant,quinoline yellow,alias
+soya flour,cereal_pulse_nut,soy flour,alias
+soybean flour,cereal_pulse_nut,soy flour,alias
+defatted soy flour,cereal_pulse_nut,soy flour,alias
+soya protein,cereal_pulse_nut,soy protein,alias
+soy protein isolate,cereal_pulse_nut,soy protein,alias
+cashew nut,cereal_pulse_nut,cashew,alias
+butter (milk fat),animal_derived,butter,alias
+oat flour,cereal_pulse_nut,oats,alias
+sooji,cereal_pulse_nut,semolina,alias
+rava,cereal_pulse_nut,semolina,alias
+rice powder,cereal_pulse_nut,rice flour,alias
+rice flour (rice),cereal_pulse_nut,rice flour,alias
+maize flour,cereal_pulse_nut,corn flour,alias
+corn meal,cereal_pulse_nut,corn flour,alias
+whole wheat atta,cereal_pulse_nut,wheat flour,alias
+groundnuts,cereal_pulse_nut,groundnut,alias
+ground nut,cereal_pulse_nut,groundnut,alias
+textured soy protein,cereal_pulse_nut,soy protein,alias
+cornmeal,cereal_pulse_nut,corn flour,alias
+gram flour,cereal_pulse_nut,besan,alias
+chickpea flour,cereal_pulse_nut,besan,alias
+bengal gram flour,cereal_pulse_nut,besan,alias
+rolled oats,cereal_pulse_nut,oats,alias
+yellow 5,colorant,tartrazine,alias
+fd&c yellow 5,colorant,tartrazine,alias
+turmeric extract,colorant,curcumin,alias
+curcumin (colour),colorant,curcumin,alias
+colour (100),colorant,curcumin,alias
+cocoa powder,other,cocoa solids,alias
+fish oil,animal_derived,fish,alias
+yogurt,animal_derived,curd,alias
+yoghurt,animal_derived,curd,alias
+colour (101),colorant,riboflavin,alias
+calcium propionate (preservative),preservative,calcium propionate,alias
+preservative (282),preservative,calcium propionate,alias
+ins 100(i),colorant,curcumin,alias
+e100(i),colorant,curcumin,alias
+ins 100,colorant,curcumin,alias
+e100,colorant,curcumin,alias
+curcumins,colorant,curcumin,alias
+fish extract,animal_derived,fish,alias
+cocoa mass,other,cocoa solids,alias
+water (treated),other,water,alias
+mango pulp,other,fruit pulp,alias
+fruit puree,other,fruit pulp,alias
+pineapple pulp,other,fruit pulp,alias
+fruit pulp concentrate,other,fruit pulp,alias
+apple juice concentrate,other,fruit juice concentrate,alias
+mixed spices,spice_flavouring,spices,alias
+spices and condiments,spice_flavouring,spices,alias
+masala,spice_flavouring,spices,alias
+eggs,animal_derived,egg,alias
+soy protein concentrate,cereal_pulse_nut,soy protein,alias
+cashew nuts,cereal_pulse_nut,cashew,alias
+cheese powder,animal_derived,cheese,alias
+cheddar cheese,animal_derived,cheese,alias
+whole milk,animal_derived,milk,alias
+toned milk,animal_derived,milk,alias
+full cream milk,animal_derived,milk,alias
+fresh milk,animal_derived,milk,alias
+anhydrous milk fat,animal_derived,milk fat,alias
+butter fat,animal_derived,milk fat,alias
+dahi,animal_derived,curd,alias
+e280,preservative,propionic acid,alias
+whole egg,animal_derived,egg,alias
+egg yolk,animal_derived,egg,alias
+fresh cream,animal_derived,cream,alias
+dairy cream,animal_derived,cream,alias
+milk cream,animal_derived,cream,alias
+processed cheese,animal_derived,cheese,alias
+egg white,animal_derived,egg,alias
+dried egg,animal_derived,egg powder,alias
+egg solids,animal_derived,egg powder,alias
+whole egg powder,animal_derived,egg powder,alias
+ins 160c,colorant,paprika oleoresins,alias
+e482,emulsifier,calcium lactylates,alias
+emulsifier (482),emulsifier,calcium lactylates,alias
+ins 432,emulsifier,polysorbate 20,alias
+polyglycerol esters of fatty acids,emulsifier,polyglycerol esters of fatty acid,alias
+ins 475,emulsifier,polyglycerol esters of fatty acid,alias
+e163,colorant,anthocyanins,alias
+ins 163(i),colorant,anthocyanins,alias
+annatto,colorant,annatto extracts,alias
+annatto colour,colorant,annatto extracts,alias
+colour (160b),colorant,annatto extracts,alias
+ins 482,emulsifier,calcium lactylates,alias
+e160c,colorant,paprika oleoresins,alias
+colour (160c),colorant,paprika oleoresins,alias
+polyoxyethylene (20) sorbitan mono-oleate,emulsifier,polysorbate 80,alias
+ins 433,emulsifier,polysorbate 80,alias
+e433,emulsifier,polysorbate 80,alias
+polyoxyethylene (20) sorbitan monoleate,emulsifier,polysorbate 80,alias
+ins 415,thickener_stabilizer,xanthan gum,alias
+e415,thickener_stabilizer,xanthan gum,alias
+xanthan,thickener_stabilizer,xanthan gum,alias
+e475,emulsifier,polyglycerol esters of fatty acid,alias
+maltitol and matitol syrup,sweetener,maltitol,alias
+sweetener (954),sweetener,saccharin,alias
+ins 472e,emulsifier,diacetyltartric and fatty acid ester of glycerol,alias
+e472e,emulsifier,diacetyltartric and fatty acid ester of glycerol,alias
+emulsifier (472e),emulsifier,diacetyltartric and fatty acid ester of glycerol,alias
+lecithins,emulsifier,lecithin,alias
+emulsifier (lecithin),emulsifier,lecithin,alias
+antioxidant (322),emulsifier,lecithin,alias
+ins 471,emulsifier,mono and diglycerides of fatty acids,alias
+e471,emulsifier,mono and diglycerides of fatty acids,alias
+stabilizer (415),thickener_stabilizer,xanthan gum,alias
+emulsifier (475),emulsifier,polyglycerol esters of fatty acid,alias
+sodium lactylates,emulsifier,sodium lactylate,alias
+ins 481,emulsifier,sodium lactylate,alias
+mono- and diglycerides,emulsifier,mono and diglycerides of fatty acids,alias
+emulsifier (mono and diglycerides),emulsifier,mono and diglycerides of fatty acids,alias
+emulsifier (471),emulsifier,mono and diglycerides of fatty acids,alias
+diacetyltartaric and fatty acid esters of glycerol,emulsifier,diacetyltartric and fatty acid ester of glycerol,alias
+e481,emulsifier,sodium lactylate,alias
+emulsifier (481),emulsifier,sodium lactylate,alias
+e461,thickener_stabilizer,methyl cellulose,alias
+ins 406,thickener_stabilizer,agar,alias
+e406,thickener_stabilizer,agar,alias
+agar-agar,thickener_stabilizer,agar,alias
+gelose,thickener_stabilizer,agar,alias
+e425,thickener_stabilizer,konjac flour,alias
+stabilizer (425),thickener_stabilizer,konjac flour,alias
+ins 1422,thickener_stabilizer,acetylated distarch adipate,alias
+e1422,thickener_stabilizer,acetylated distarch adipate,alias
+stabilizer (1422),thickener_stabilizer,acetylated distarch adipate,alias
+ins 461,thickener_stabilizer,methyl cellulose,alias
+stabilizer (401),thickener_stabilizer,sodium alginate,alias
+stabilizer (461),thickener_stabilizer,methyl cellulose,alias
+stabilizer (406),thickener_stabilizer,agar,alias
+ins 407,thickener_stabilizer,carrageenan,alias
+e407,thickener_stabilizer,carrageenan,alias
+carrageenan (stabilizer),thickener_stabilizer,carrageenan,alias
+stabilizer (407),thickener_stabilizer,carrageenan,alias
+ins 410,thickener_stabilizer,carob bean gum,alias
+lonjac flour,thickener_stabilizer,konjac flour,alias
+ins 425,thickener_stabilizer,konjac flour,alias
+e473,emulsifier,sucrose esters of fatty acids,alias
+ins 491,emulsifier,sorbitan monostearate,alias
+e491,emulsifier,sorbitan monostearate,alias
+span 60,emulsifier,sorbitan monostearate,alias
+emulsifier (491),emulsifier,sorbitan monostearate,alias
+ins 473,emulsifier,sucrose esters of fatty acids,alias
+e432,emulsifier,polysorbate 20,alias
+polyoxyethylene (20) sorbitan monolaurate,emulsifier,polysorbate 20,alias
+emulsifier (432),emulsifier,polysorbate 20,alias
+japanese isinglass,thickener_stabilizer,agar,alias
+e965,sweetener,maltitol,alias
+emulsifier (473),emulsifier,sucrose esters of fatty acids,alias
+ins 400,thickener_stabilizer,alginic acid,alias
+e400,thickener_stabilizer,alginic acid,alias
+stabilizer (400),thickener_stabilizer,alginic acid,alias
+ins 401,thickener_stabilizer,sodium alginate,alias
+emulsifier (433),emulsifier,polysorbate 80,alias
+mono-and di-glycerides of fatty acids,emulsifier,mono and diglycerides of fatty acids,alias
+mono and diglycerides,emulsifier,mono and diglycerides of fatty acids,alias
+e401,thickener_stabilizer,sodium alginate,alias
+e950,sweetener,acesulfame potassium,alias
+ins 322(ii),emulsifier,lecithin,alias
+e322(ii),emulsifier,lecithin,alias
+sweetener (965),sweetener,maltitol,alias
+ins 967,sweetener,xylitol,alias
+e967,sweetener,xylitol,alias
+sweetener (967),sweetener,xylitol,alias
+ins 968,sweetener,erythritol,alias
+e968,sweetener,erythritol,alias
+sweetener (421),sweetener,mannitol,alias
+ins 950,sweetener,acesulfame potassium,alias
+e224,preservative,potassium metabisulphite,alias
+sweetener (968),sweetener,erythritol,alias
+ins 322,emulsifier,lecithin,alias
+e322,emulsifier,lecithin,alias
+ins 322(i),emulsifier,lecithin,alias
+e322(i),emulsifier,lecithin,alias
+sweetener (950),sweetener,acesulfame potassium,alias
+ins 951,sweetener,aspartame,alias
+e951,sweetener,aspartame,alias
+aspertame,sweetener,aspartame,alias
+ins 282,preservative,calcium propionate,alias
+preservative (202),preservative,potassium sorbate,alias
+preservative (280),preservative,propionic acid,alias
+e234,preservative,nisin,alias
+preservative (234),preservative,nisin,alias
+ins 235,preservative,natamycin,alias
+e235,preservative,natamycin,alias
+pimaricin (natamycin),preservative,natamycin,alias
+sodium propionate (preservative),preservative,sodium propionate,alias
+preservative (281),preservative,sodium propionate,alias
+aspartyl phenyl alanine methyl ester,sweetener,aspartame,alias
+e282,preservative,calcium propionate,alias
+ins 260,preservative,acetic acid,alias
+e260,preservative,acetic acid,alias
+"acetic acid, glacial",preservative,acetic acid,alias
+preservative (260),preservative,acetic acid,alias
+ins 281,preservative,sodium propionate,alias
+e281,preservative,sodium propionate,alias
+preservative (223),preservative,sodium metabisulphite,alias
+e223,preservative,sodium metabisulphite,alias
+sucralose (trichlorogalactosucrose),sweetener,sucralose,alias
+sorbitol and sorbitol syrup,sweetener,sorbitol,alias
+sorbitol syrup,sweetener,sorbitol,alias
+d-sorbitol,sweetener,sorbitol,alias
+e163(i),colorant,anthocyanins,alias
+ins 163(iii),colorant,anthocyanins,alias
+e163(iii),colorant,anthocyanins,alias
+colour (163),colorant,anthocyanins,alias
+ins 955,sweetener,sucralose,alias
+e955,sweetener,sucralose,alias
+"4,1',6'-trichlorogalactosucrose",sweetener,sucralose,alias
+e420(i),sweetener,sorbitol,alias
+sweetener (955),sweetener,sucralose,alias
+ins 420,sweetener,sorbitol,alias
+e420,sweetener,sorbitol,alias
+ins 420(i),sweetener,sorbitol,alias
+ins 960,sweetener,stevioside,alias
+e960,sweetener,stevioside,alias
+sweetener (960),sweetener,stevioside,alias
+maltitol and maltitol syrup,sweetener,maltitol,alias
+ins 965,sweetener,maltitol,alias
+acesulfame-k,sweetener,acesulfame potassium,alias
+sweetener (420),sweetener,sorbitol,alias
+ins 421,sweetener,mannitol,alias
+e421,sweetener,mannitol,alias
+aspartame (sweetener),sweetener,aspartame,alias
+sweetener (951),sweetener,aspartame,alias
+ins 952,sweetener,cyclamate,alias
+e952,sweetener,cyclamate,alias
+"cyclamic acid (and na, k, ca salts)",sweetener,cyclamate,alias
+sweetener (952),sweetener,cyclamate,alias
+e340,acidity_regulator,potassium phosphates,alias
+acesulfame k,sweetener,acesulfame potassium,alias
+ins 171,colorant,titanium dioxide,alias
+e171,colorant,titanium dioxide,alias
+colour (171),colorant,titanium dioxide,alias
+ins 162,colorant,beet red,alias
+e162,colorant,beet red,alias
+colour (162),colorant,beet red,alias
+anothocyanins,colorant,anthocyanins,alias
+ins 163,colorant,anthocyanins,alias
+acidity regulator (575),acidity_regulator,glucono delta-lactone,alias
+ins 300,antioxidant,ascorbic acid,alias
+e300,antioxidant,ascorbic acid,alias
+ascorbic acid (l),antioxidant,ascorbic acid,alias
+e296,acidity_regulator,malic acid,alias
+malic acid (dl-l-),acidity_regulator,malic acid,alias
+acidity regulator (296),acidity_regulator,malic acid,alias
+ins 297,acidity_regulator,fumaric acid,alias
+e297,acidity_regulator,fumaric acid,alias
+ins 575,acidity_regulator,glucono delta-lactone,alias
+e575,acidity_regulator,glucono delta-lactone,alias
+e320,antioxidant,butylated hydroxyanisole,alias
+ins 621,flavour_enhancer,monosodium glutamate,alias
+ins 501(i),acidity_regulator,potassium carbonate,alias
+e501(i),acidity_regulator,potassium carbonate,alias
+kansui,acidity_regulator,potassium carbonate,alias
+potassium carbonate (kansui),acidity_regulator,potassium carbonate,alias
+e330,acidity_regulator,citric acid,alias
+citric acid (acidity regulator),acidity_regulator,citric acid,alias
+acidity regulator (330),acidity_regulator,citric acid,alias
+ins 331,acidity_regulator,sodium citrates,alias
+bht,antioxidant,butylated hydroxytoluene,alias
+ins 320,antioxidant,butylated hydroxyanisole,alias
+acidity regulator (338),acidity_regulator,phosphoric acid,alias
+sodium dihydrogen phosphate,acidity_regulator,sodium phosphates,alias
+ins 339,acidity_regulator,sodium phosphates,alias
+e339,acidity_regulator,sodium phosphates,alias
+bha,antioxidant,butylated hydroxyanisole,alias
+butylated hydroxy anisole,antioxidant,butylated hydroxyanisole,alias
+antioxidant (320),antioxidant,butylated hydroxyanisole,alias
+ins 321,antioxidant,butylated hydroxytoluene,alias
+e321,antioxidant,butylated hydroxytoluene,alias
+e331,acidity_regulator,sodium citrates,alias
+antioxidant (310),antioxidant,propyl gallate,alias
+ins 319,antioxidant,tertiary butylhydroquinone,alias
+acidity regulator (297),acidity_regulator,fumaric acid,alias
+antioxidant (321),antioxidant,butylated hydroxytoluene,alias
+ins 270,acidity_regulator,lactic acid,alias
+e270,acidity_regulator,lactic acid,alias
+"lactic acid (l-, d—and dl-)",acidity_regulator,lactic acid,alias
+preservative (270),acidity_regulator,lactic acid,alias
+ins 296,acidity_regulator,malic acid,alias
+c.i. natural green 3,colorant,chlorophyll,alias
+potassium dihydrogen phosphate,acidity_regulator,potassium phosphates,alias
+sodium hydrogencarbonate,acidity_regulator,sodium hydrogen carbonate,alias
+e133,colorant,brilliant blue fcf,alias
+c.l. food green 3,colorant,fast green fcf,alias
+ins 338,acidity_regulator,phosphoric acid,alias
+e338,acidity_regulator,phosphoric acid,alias
+e143,colorant,fast green fcf,alias
+ins 143,colorant,fast green fcf,alias
+colour (140),colorant,chlorophyll,alias
+lebensmittel green no.1,colorant,chlorophyll,alias
+ins 340,acidity_regulator,potassium phosphates,alias
+e140,colorant,chlorophyll,alias
+ins 132,colorant,indigotine,alias
+fd and c blue no.1,colorant,brilliant blue fcf,alias
+colour (129),colorant,allura red,alias
+ins 140,colorant,chlorophyll,alias
+chlorophyll copper,colorant,chlorophyll,alias
+colour (133),colorant,brilliant blue fcf,alias
+brilliant blue,colorant,brilliant blue fcf,alias
+blue brilliant fcf,colorant,brilliant blue fcf,alias
+ins 334,acidity_regulator,tartaric acid,alias
+sodium citrate,acidity_regulator,sodium citrates,alias
+ammonium bicarbonate,acidity_regulator,ammonium hydrogen carbonate,alias
+glucono delta lactone (gdl),acidity_regulator,glucono delta-lactone,alias
+orthophosphoric acid,acidity_regulator,phosphoric acid,alias
+acidity regulator (331),acidity_regulator,sodium citrates,alias
+ins 332,acidity_regulator,potassium citrates,alias
+e332,acidity_regulator,potassium citrates,alias
+potassium citrate,acidity_regulator,potassium citrates,alias
+acidity regulator (332),acidity_regulator,potassium citrates,alias
+stabilizer (414),thickener_stabilizer,gum arabic,alias
+gum arabic (acacia gum),thickener_stabilizer,gum arabic,alias
+ins 330,acidity_regulator,citric acid,alias
+sodium phosphate,acidity_regulator,sodium phosphates,alias
+acidity regulator (339),acidity_regulator,sodium phosphates,alias
+e334,acidity_regulator,tartaric acid,alias
+tartaric acid [l(+)-],acidity_regulator,tartaric acid,alias
+potassium phosphate,acidity_regulator,potassium phosphates,alias
+l (+) - tartaric acid,acidity_regulator,tartaric acid,alias
+acidity regulator (334),acidity_regulator,tartaric acid,alias
+microcystalline cellulose,thickener_stabilizer,microcrystalline cellulose,alias
+caramel color,colorant,caramel,alias
+colour (150a),colorant,caramel,alias
+beta-carotene,colorant,carotenes,alias
+beta carotene,colorant,carotenes,alias
+carotene,colorant,carotenes,alias
+colour (160a),colorant,carotenes,alias
+ins 160b,colorant,annatto extracts,alias
+e160b,colorant,annatto extracts,alias
+colour (150c),colorant,caramel iii,alias
+ins 150d,colorant,caramel iv,alias
+caramel colour,colorant,caramel,alias
+stabilizer (417),thickener_stabilizer,tara gum,alias
+ins 418,thickener_stabilizer,gellan gum,alias
+e418,thickener_stabilizer,gellan gum,alias
+stabilizer (418),thickener_stabilizer,gellan gum,alias
+ins 440,thickener_stabilizer,pectin,alias
+e440,thickener_stabilizer,pectin,alias
+e160a,colorant,carotenes,alias
+ins 466,thickener_stabilizer,sodium carboxymethyl cellulose,alias
+e466,thickener_stabilizer,sodium carboxymethyl cellulose,alias
+kikar,thickener_stabilizer,gum arabic,alias
+e410,thickener_stabilizer,carob bean gum,alias
+stabilizer (410),thickener_stabilizer,carob bean gum,alias
+ins 412,thickener_stabilizer,guar gum,alias
+e412,thickener_stabilizer,guar gum,alias
+guar,thickener_stabilizer,guar gum,alias
+stabilizer (412),thickener_stabilizer,guar gum,alias
+ins 417,thickener_stabilizer,tara gum,alias
+e417,thickener_stabilizer,tara gum,alias
+babul,thickener_stabilizer,gum arabic,alias
+tbhq,antioxidant,tertiary butylhydroquinone,alias
+acacia gum,thickener_stabilizer,gum arabic,alias
+arabic,thickener_stabilizer,gum arabic,alias
+ins 414,thickener_stabilizer,gum arabic,alias
+e414,thickener_stabilizer,gum arabic,alias
+e150d,colorant,caramel iv,alias
+caramel iv-ammonia sulphite process,colorant,caramel iv,alias
+colour (150d),colorant,caramel iv,alias
+ins 160a,colorant,carotenes,alias
+caramel i-plain,colorant,caramel,alias
+ins 150c,colorant,caramel iii,alias
+e306,antioxidant,mixed tocopherols,alias
+vitamin c,antioxidant,ascorbic acid,alias
+ins 150a,colorant,caramel,alias
+e150a,colorant,caramel,alias
+antioxidant (306),antioxidant,mixed tocopherols,alias
+ins 307,antioxidant,alpha-tocopherol,alias
+e307,antioxidant,alpha-tocopherol,alias
+antioxidant (307),antioxidant,alpha-tocopherol,alias
+ins 310,antioxidant,propyl gallate,alias
+e310,antioxidant,propyl gallate,alias
+pectins,thickener_stabilizer,pectin,alias
+e150c,colorant,caramel iii,alias
+caramel iii – ammonia process,colorant,caramel iii,alias
+fd and c green no.3,colorant,fast green fcf,alias
+vert solide fcf,colorant,fast green fcf,alias
+colour (143),colorant,fast green fcf,alias
+caramel colour (plain) caramel i,colorant,caramel,alias
+caramel (plain),colorant,caramel,alias
+e319,antioxidant,tertiary butylhydroquinone,alias
+antioxidant (319),antioxidant,tertiary butylhydroquinone,alias
+antioxidant (301),antioxidant,sodium ascorbate,alias
+stabilizer (440),thickener_stabilizer,pectin,alias
+pectin (gelling agent),thickener_stabilizer,pectin,alias
+ins 306,antioxidant,mixed tocopherols,alias
+ins 460(i),thickener_stabilizer,microcrystalline cellulose,alias
+e460(i),thickener_stabilizer,microcrystalline cellulose,alias
+l-ascorbic acid,antioxidant,ascorbic acid,alias
+antioxidant (300),antioxidant,ascorbic acid,alias
+ins 301,antioxidant,sodium ascorbate,alias
+e301,antioxidant,sodium ascorbate,alias
+ins 1414,thickener_stabilizer,acetylated distarch phosphate,alias
+stabilizer (466),thickener_stabilizer,sodium carboxymethyl cellulose,alias
+e1414,thickener_stabilizer,acetylated distarch phosphate,alias
+emulsifier (1414),thickener_stabilizer,acetylated distarch phosphate,alias
+ins 304,antioxidant,ascorbyl palmitate,alias
+e304,antioxidant,ascorbyl palmitate,alias
+vitamin c palmitate,antioxidant,ascorbyl palmitate,alias
+antioxidant (304),antioxidant,ascorbyl palmitate,alias
+mixed tocopherols concentrate,antioxidant,mixed tocopherols,alias
+bbutylated hydroxytoluene,antioxidant,butylated hydroxytoluene,ocr_noise
+propyl gallae,antioxidant,propyl gallate,ocr_noise
+propyl gallote,antioxidant,propyl gallate,ocr_noise
+nature 1dentical flavouring,spice_flavouring,nature identical flavouring,ocr_noise
+propyl galate,antioxidant,propyl gallate,ocr_noise
+brilliant blue ff,colorant,brilliant blue fcf,ocr_noise
+brilliant bluue fcf,colorant,brilliant blue fcf,ocr_noise
+ppalm oil,oil_fat,palm oil,ocr_noise
+polm oil,oil_fat,palm oil,ocr_noise
+skimmcd milk powder,animal_derived,skimmed milk powder,ocr_noise
+sodium metaisulphite,preservative,sodium metabisulphite,ocr_noise
+5odium metabisulphite,preservative,sodium metabisulphite,ocr_noise
+allura rred,colorant,allura red,ocr_noise
+naturol colour,colorant,natural colour,ocr_noise
+ntural colour,colorant,natural colour,ocr_noise
+natural coolour,colorant,natural colour,ocr_noise
+nature identical flavouuring,spice_flavouring,nature identical flavouring,ocr_noise
+naature identical flavouring,spice_flavouring,nature identical flavouring,ocr_noise
+asparttame,sweetener,aspartame,ocr_noise
+grovndnut,cereal_pulse_nut,groundnut,ocr_noise
+ocesulfame potassium,sweetener,acesulfame potassium,ocr_noise
+aeesulfame potassium,sweetener,acesulfame potassium,ocr_noise
+acesuifame potassium,sweetener,acesulfame potassium,ocr_noise
+sucrolose,sweetener,sucralose,ocr_noise
+cocoo solids,other,cocoa solids,ocr_noise
+cocoa solidds,other,cocoa solids,ocr_noise
+palm oii,oil_fat,palm oil,ocr_noise
+groudnut,cereal_pulse_nut,groundnut,ocr_noise
+ggroundnut,cereal_pulse_nut,groundnut,ocr_noise
+almorid,cereal_pulse_nut,almond,ocr_noise
+groundnut ooil,oil_fat,groundnut oil,ocr_noise
+grounnut oil,oil_fat,groundnut oil,ocr_noise
+asorbic acid,antioxidant,ascorbic acid,ocr_noise
+aspartme,sweetener,aspartame,ocr_noise
+casbew,cereal_pulse_nut,cashew,ocr_noise
+eashew,cereal_pulse_nut,cashew,ocr_noise
+almonnd,cereal_pulse_nut,almond,ocr_noise
+allmond,cereal_pulse_nut,almond,ocr_noise
+carragcenan,thickener_stabilizer,carrageenan,ocr_noise
+added flaavour,spice_flavouring,added flavour,ocr_noise
+ssodium metabisulphite,preservative,sodium metabisulphite,ocr_noise
+sucraloose,sweetener,sucralose,ocr_noise
+succralose,sweetener,sucralose,ocr_noise
+alura red,colorant,allura red,ocr_noise
+alluraa red,colorant,allura red,ocr_noise
+carrageennan,thickener_stabilizer,carrageenan,ocr_noise
+carragecnan,thickener_stabilizer,carrageenan,ocr_noise
+vegeetable oils,oil_fat,vegetable oils,ocr_noise
+added flav0ur,spice_flavouring,added flavour,ocr_noise
+mono and diglycerides of fattyy acids,emulsifier,mono and diglycerides of fatty acids,ocr_noise
+mono and diglycerides off fatty acids,emulsifier,mono and diglycerides of fatty acids,ocr_noise
+mono and digllycerides of fatty acids,emulsifier,mono and diglycerides of fatty acids,ocr_noise
+caamel,colorant,caramel,ocr_noise
+ccaramel,colorant,caramel,ocr_noise
+caraml,colorant,caramel,ocr_noise
+disodiu guanylate,flavour_enhancer,disodium guanylate,ocr_noise
+added flaour,spice_flavouring,added flavour,ocr_noise
+rnaltodextrin,sweetener,maltodextrin,ocr_noise
+soy proteiri,cereal_pulse_nut,soy protein,ocr_noise
+soy prrotein,cereal_pulse_nut,soy protein,ocr_noise
+dextrosc,sweetener,dextrose,ocr_noise
+dextroe,sweetener,dextrose,ocr_noise
+dexfrose,sweetener,dextrose,ocr_noise
+glucos syrup,sweetener,glucose syrup,ocr_noise
+butyloted hydroxytoluene,antioxidant,butylated hydroxytoluene,ocr_noise
+butylated bydroxytoluene,antioxidant,butylated hydroxytoluene,ocr_noise
+maaltodextrin,sweetener,maltodextrin,ocr_noise
+brilliant bue fcf,colorant,brilliant blue fcf,ocr_noise
+maltodextrln,sweetener,maltodextrin,ocr_noise
+sodium hloride,other,sodium chloride,ocr_noise
+sodium choride,other,sodium chloride,ocr_noise
+soium chloride,other,sodium chloride,ocr_noise
+soy ecithin,emulsifier,soy lecithin,ocr_noise
+soy potein,cereal_pulse_nut,soy protein,ocr_noise
+wheat gluen,cereal_pulse_nut,wheat gluten,ocr_noise
+wheaf gluten,cereal_pulse_nut,wheat gluten,ocr_noise
+wheat flovr,cereal_pulse_nut,wheat flour,ocr_noise
+lcithin,emulsifier,lecithin,ocr_noise
+lecithhin,emulsifier,lecithin,ocr_noise
+lecithiin,emulsifier,lecithin,ocr_noise
+suugar,sweetener,sugar,ocr_noise
+monosodium lutamate,flavour_enhancer,monosodium glutamate,ocr_noise
+monosodium giutamate,flavour_enhancer,monosodium glutamate,ocr_noise
+maaida,cereal_pulse_nut,maida,ocr_noise
+mada,cereal_pulse_nut,maida,ocr_noise
+maia,cereal_pulse_nut,maida,ocr_noise
+wheaat flour,cereal_pulse_nut,wheat flour,ocr_noise
+wheat lour,cereal_pulse_nut,wheat flour,ocr_noise
+pecfin,thickener_stabilizer,pectin,ocr_noise
+guar gvm,thickener_stabilizer,guar gum,ocr_noise
+pectn,thickener_stabilizer,pectin,ocr_noise
+calcim carbonate,other,calcium carbonate,ocr_noise
+calcium carboate,other,calcium carbonate,ocr_noise
+colcium carbonate,other,calcium carbonate,ocr_noise
+titaniuum dioxide,colorant,titanium dioxide,ocr_noise
+ttanium dioxide,colorant,titanium dioxide,ocr_noise
+titanium dioxxide,colorant,titanium dioxide,ocr_noise
+svgar,sweetener,sugar,ocr_noise
+suar,sweetener,sugar,ocr_noise
+ssodium benzoate,preservative,sodium benzoate,ocr_noise
+egg powdcr,animal_derived,egg powder,ocr_noise
+citr1c acid,acidity_regulator,citric acid,ocr_noise
+sodiium hydrogen carbonate,acidity_regulator,sodium hydrogen carbonate,ocr_noise
+soddium benzoate,preservative,sodium benzoate,ocr_noise
+sodium enzoate,preservative,sodium benzoate,ocr_noise
+ptassium sorbate,preservative,potassium sorbate,ocr_noise
+p0tassium sorbate,preservative,potassium sorbate,ocr_noise
+potass1um sorbate,preservative,potassium sorbate,ocr_noise
+citricc acid,acidity_regulator,citric acid,ocr_noise
+citrie acid,acidity_regulator,citric acid,ocr_noise
+vegetable oills,oil_fat,vegetable oils,ocr_noise
+vegetable ils,oil_fat,vegetable oils,ocr_noise
+sorbbitol,sweetener,sorbitol,ocr_noise
+eegg powder,animal_derived,egg powder,ocr_noise
+egg powcler,animal_derived,egg powder,ocr_noise
+disodium guanyiate,flavour_enhancer,disodium guanylate,ocr_noise
+disodium gguanylate,flavour_enhancer,disodium guanylate,ocr_noise
+diisodium inosinate,flavour_enhancer,disodium inosinate,ocr_noise
+disod1um inosinate,flavour_enhancer,disodium inosinate,ocr_noise
+disoclium inosinate,flavour_enhancer,disodium inosinate,ocr_noise
+ssodium alginate,thickener_stabilizer,sodium alginate,ocr_noise
+sodium alginatte,thickener_stabilizer,sodium alginate,ocr_noise
+soclium alginate,thickener_stabilizer,sodium alginate,ocr_noise
+pecin,thickener_stabilizer,pectin,ocr_noise
+gvar gum,thickener_stabilizer,guar gum,ocr_noise
+ttartrazine,colorant,tartrazine,ocr_noise
+tartrazie,colorant,tartrazine,ocr_noise
+sunset yeellow,colorant,sunset yellow,ocr_noise
+sunset yeliow,colorant,sunset yellow,ocr_noise
+sunsett yellow,colorant,sunset yellow,ocr_noise
+buttr,animal_derived,butter,ocr_noise
+buttter,animal_derived,butter,ocr_noise
+monosodium glutamaate,flavour_enhancer,monosodium glutamate,ocr_noise
+xantban gum,thickener_stabilizer,xanthan gum,ocr_noise
+xanthan gm,thickener_stabilizer,xanthan gum,ocr_noise
+xantan gum,thickener_stabilizer,xanthan gum,ocr_noise
+tarfrazine,colorant,tartrazine,ocr_noise
+guar gm,thickener_stabilizer,guar gum,ocr_noise
+sodium hydrogen carbonote,acidity_regulator,sodium hydrogen carbonate,ocr_noise
+sodium hydrogen cabonate,acidity_regulator,sodium hydrogen carbonate,ocr_noise
+cocoa slids,other,cocoa solids,ocr_noise
+calcium proplonate,preservative,calcium propionate,ocr_noise
+calcium propionnate,preservative,calcium propionate,ocr_noise
+caalcium propionate,preservative,calcium propionate,ocr_noise
+ascorbic aacid,antioxidant,ascorbic acid,ocr_noise
+ascorbic aid,antioxidant,ascorbic acid,ocr_noise
+glucose 5yrup,sweetener,glucose syrup,ocr_noise
+gluc0se syrup,sweetener,glucose syrup,ocr_noise
+whey powwder,animal_derived,whey powder,ocr_noise
+sorbiitol,sweetener,sorbitol,ocr_noise
+s0rbitol,sweetener,sorbitol,ocr_noise
+invert ugar,sweetener,invert sugar,ocr_noise
+invert sugaar,sweetener,invert sugar,ocr_noise
+invcrt sugar,sweetener,invert sugar,ocr_noise
+wheat gluteen,cereal_pulse_nut,wheat gluten,ocr_noise
+mllk solids,animal_derived,milk solids,ocr_noise
+milk soliids,animal_derived,milk solids,ocr_noise
+milk solicls,animal_derived,milk solids,ocr_noise
+why powder,animal_derived,whey powder,ocr_noise
+whey powdr,animal_derived,whey powder,ocr_noise
+asartame,sweetener,aspartame,ocr_noise
+groundnuf oil,oil_fat,groundnut oil,ocr_noise
+cshew,cereal_pulse_nut,cashew,ocr_noise
+buttcr,animal_derived,butter,ocr_noise
+ghhee,animal_derived,ghee,ocr_noise
+ghce,animal_derived,ghee,ocr_noise
+gghee,animal_derived,ghee,ocr_noise
+soy lecihin,emulsifier,soy lecithin,ocr_noise
+soy lecithiin,emulsifier,soy lecithin,ocr_noise
+skimmed milk powdeer,animal_derived,skimmed milk powder,ocr_noise
+skimmedd milk powder,animal_derived,skimmed milk powder,ocr_noise
