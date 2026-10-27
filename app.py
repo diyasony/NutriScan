@@ -42,20 +42,83 @@ if uploaded_file:
     ingredients = clean_ingredient_text(raw_text)
 
     if not ingredients:
-        st.warning("Couldn't detect any ingredients. Try a clearer photo.")
+        st.warning(
+            "Couldn't reliably identify the ingredient section. "
+            "Please upload a clearer photo showing the word "
+            "'Ingredients' and the complete ingredient list."
+        )
+
     else:
-        user_profile = {"allergies": allergies, "conditions": conditions}
-        results = check_warnings(ingredients, kb, classifier, vectorizer, user_profile)
-        score = compute_health_score(results)
+        st.subheader("Extracted ingredient candidates")
+        st.write(ingredients)
+
+        user_profile = {
+            "allergies": allergies,
+            "conditions": conditions,
+        }
+
+        results = check_warnings(
+            ingredients,
+            kb,
+            classifier,
+            vectorizer,
+            user_profile,
+        )
 
         st.subheader("3. Results")
-        st.metric("Health Score", f"{score} / 100")
+
+        # Unknown ingredients and missing allergen information
+        # must not be treated as proof of safety.
+        review_needed = any(
+            r.get("review_required", True)
+            for r in results
+        )
+
+        if review_needed:
+            st.warning(
+                "Some ingredients are unmatched or lack recorded "
+                "allergen information. Results may be incomplete; "
+                "please review the label manually."
+            )
+
+        # Show the score only when every ingredient was matched
+        # and the current warning results do not require review.
+        if not review_needed:
+            score = compute_health_score(results)
+            st.metric("Health Score", f"{score} / 100")
+        else:
+            st.metric("Health Score", "Unavailable")
+            st.caption(
+                "A reliable score cannot be displayed until "
+                "the ingredient information has been reviewed."
+            )
 
         for r in results:
-            line = f"**{r['ingredient']}** — _{r['category']}_ (risk: {r['risk_level']})"
+            line = (
+                f"**{r['ingredient']}** — "
+                f"_{r['category']}_ "
+                f"(risk: {r['risk_level']})"
+            )
+
             if r["allergen_warning"]:
-                st.error(f"{line}  \n⚠️ Allergen match: {', '.join(r['allergen_warning'])}")
+                st.error(
+                    f"{line}\n\n"
+                    f"⚠️ Allergen match: "
+                    f"{', '.join(r['allergen_warning'])}"
+                )
+
             elif r["condition_warning"]:
-                st.warning(f"{line}  \n⚠️ Condition risk: {', '.join(r['condition_warning'])}")
+                st.warning(
+                    f"{line}\n\n"
+                    f"⚠️ Condition warning: "
+                    f"{', '.join(r['condition_warning'])}"
+                )
+
             else:
                 st.markdown(line)
+
+            if r.get("review_required", True):
+                st.caption(
+                    "⚠️ Manual review required: ingredient matching "
+                    "or allergen information is incomplete."
+                )
