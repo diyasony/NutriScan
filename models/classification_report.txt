@@ -1,0 +1,22 @@
+Best model: LinearSVC (SVM)
+Out-of-fold predictions, GroupKFold(5) by parent_ingredient, 1058 rows
+
+                      precision    recall  f1-score   support
+
+   acidity_regulator       0.67      0.81      0.73        83
+      animal_derived       0.66      0.69      0.67        83
+         antioxidant       0.74      0.78      0.76        54
+    cereal_pulse_nut       0.42      0.42      0.42        83
+            colorant       0.79      0.76      0.77       176
+          emulsifier       0.80      0.87      0.84        70
+    flavour_enhancer       0.83      0.42      0.56        36
+             oil_fat       0.33      0.33      0.33        45
+               other       0.29      0.21      0.24        77
+        preservative       0.70      0.81      0.75        79
+    spice_flavouring       0.64      0.44      0.52        52
+           sweetener       0.74      0.79      0.76       120
+thickener_stabilizer       0.61      0.69      0.65       100
+
+            accuracy                           0.65      1058
+           macro avg       0.63      0.62      0.62      1058
+        weighted avg       0.65      0.65      0.65      1058
