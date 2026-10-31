@@ -69,6 +69,14 @@ May contain traces of nuts and mustard.
 Nutritional information: Energy 520 kcal Protein 18 g Carbohydrates 40 g
 Packed by: XYZ Snacks, Indore""",
 
+    "peanut chocolate bar": """INCREDIENTS
+Milk chocolate coating (35%): Sugar, Milk solids, Cocoa butter, Cocoa solids, Edible
+vegetable fats <5% (Sal fat, Palm oil), Dextrose, Emulsifier (INS 322); Centre filling
+(65%): Liquid glucose, Peanuts (21%), Sugar, Hydrogenated vegetable oil (Palm oil), Milk
+solids, Iodized salt, Cocoa butter, Cocoa solids, Edible vegetable fats <5% (Sal fat, Palm
+oil), Dextrose, Emulsifier (INS 322). CONTAINS VEGETABLE FAT IN ADDITION TO COCOA BUTTER.
+Contains Milk, Peanut and Soy. May contain tree nut.""",
+
     "ice cream": """Ingredients: Milk, sugar, cream, skimmed milk powder, liquid glucose, edible vegetable fat,
 emulsifier (INS 471), stabilizers (INS 412, INS 407, INS 410), permitted natural colour (INS 160b),
 added flavour (nature identical flavouring substances), mono and diglycerides of fatty acids, egg yolk powder.
@@ -85,6 +93,12 @@ def names(items):
 def show(title, results, profile):
     print(f"  [{title}] score = {compute_health_score(results)}")
     any_w = False
+    for a in getattr(results, "label_declares", ()):
+        any_w = True
+        print(f"     - Label declares: {a}  (CONFIRMED)")
+    for a in getattr(results, "label_possible", ()):
+        any_w = True
+        print(f"     - Label declares (ambiguous): {a}  (POSSIBLE)")
     for r in results:
         msgs = []
         if r["allergen_warning"]:
@@ -143,6 +157,29 @@ def main():
     # plain foods are not penalised for allergens the user did not select
     res = check_warnings(parsed["namkeen"], kb, clf, vec, {"allergies": [], "conditions": []})
     assert compute_health_score(res) >= 80
+    # ---- peanut chocolate bar (soy + peanut + gluten user) ----
+    bar = parsed["peanut chocolate bar"]
+    bar_names = [str(i) for i in bar]
+    assert "peanuts" in bar_names and "sugar" in bar_names and "peanuts sugar" not in bar_names
+    assert not any(n in bar_names for n in ("milk", "peanut", "soy", "milk peanut")), "Contains-line leaked"
+    assert not any("contains" in n or "coating" in n or "filling" in n or "<" in n for n in bar_names)
+    assert {"sal fat", "palm oil"} <= set(bar_names), "bracket sub-ingredients"
+    assert bar.declared_allergens == ["dairy", "peanut", "soy"], bar.declared_allergens
+    assert any(str(i) == "tree nut" and i.trace for i in bar), "may contain -> trace"
+    triple = {"allergies": ["soy", "peanut", "gluten"], "conditions": []}
+    res = check_warnings(bar, kb, clf, vec, triple)
+    assert res.label_declares == ["peanut", "soy"], res.label_declares
+    seen = [a for r in res for k in ("allergen_warning", "possible_allergen_warning", "trace_allergen_warning")
+            for a in (r[k] or [])] + list(res.label_declares)
+    assert len(seen) == len(set(seen)), "an allergen was reported twice"
+    print("  [soy+peanut+gluten user] Label declares:", ", ".join(res.label_declares),
+          "| score =", compute_health_score(res))
+    # INS range, heading typo, unrecognised items
+    assert not any("3593" in str(i) or "3593" in "".join(i.ins_codes) for i in clean_ingredient_text(
+        "Incredients: sugar, emulsifier (INS3593), colour (INS 3593), preservative (211)"))
+    junk = check_warnings(clean_ingredient_text("ingredients: sugar, xkq, bcdfg"), kb, clf, vec, triple)
+    assert [r["source"] for r in junk if r["ingredient"] in ("xkq", "bcdfg")] == ["unrecognised"] * 2, junk
+    assert compute_health_score(junk) == 100, "unrecognised items must not be penalised"
     print("\nAll assertions passed.")
 
 
