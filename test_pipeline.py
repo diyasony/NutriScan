@@ -85,6 +85,23 @@ Nutrition facts Amount per 100 g: Energy 207 kcal, Total fat 11 g
 Store at -18 C""",
 }
 
+# Peanut chocolate bar label as the app's OCR read it (colon after "(35%)" lost, comma after the
+# bracket lost, "Sal fat" joined to "Salfat"); Soy on the same line, as printed on the pack.
+# NOTE: reconstructed from the label photo + the noise described; replace with the raw text from the
+# app's "Raw OCR text (for debugging)" box if it differs.
+PHOTO_OCR = """INGREDIENTS
+Milk chocolate coating (35%) Sugar, Milk solids, Cocoa butter, Cocoa solids, Edible
+vegetable fats <5% (Salfat, Palm oil) Dextrose, Emulsifier (INS 322); Centre filling (65%):
+Liquid glucose, Peanuts (21%), Sugar, Hydrogenated vegetable oil (Palm oil), Milk solids,
+Iodized salt, Cocoa butter, Cocoa solids, Edible vegetable fats <5% (Sal fat, Palm oil),
+Dextrose, Emulsifier (INS 322).CONTAINS VEGETABLE FAT IN ADDITION TO COCOA BUTTER.
+Contains Milk, Peanut and Soy. May contain tree nut."""
+LABELS["photo ocr"] = PHOTO_OCR
+LABELS["photo ocr, split before Soy"] = PHOTO_OCR.replace("Peanut and Soy.", "Peanut and\nSoy.")
+LABELS["photo ocr, Soy read as Say"] = PHOTO_OCR.replace("Soy.", "Say.")
+LABELS["photo ocr, split + Say + Peanul"] = PHOTO_OCR.replace("Peanut and Soy.", "Peanul and\nSay.")
+LABELS["photo ocr, allergen word on next line"] = PHOTO_OCR.replace("Peanut and Soy.", "Peanut\nSoy.")
+
 
 def names(items):
     return [str(i) + ("*" if getattr(i, "trace", False) else "") for i in items]
@@ -174,6 +191,36 @@ def main():
     assert len(seen) == len(set(seen)), "an allergen was reported twice"
     print("  [soy+peanut+gluten user] Label declares:", ", ".join(res.label_declares),
           "| score =", compute_health_score(res))
+    # ---- photo OCR case (colon/comma lost, "Salfat", Soy on the next line) ----
+    for key in [k for k in LABELS if k.startswith("photo ocr")]:
+        p_items = parsed[key]
+        p_names = [str(i) for i in p_items]
+        assert p_items.declared_allergens == ["dairy", "peanut", "soy"], (key, p_items.declared_allergens)
+        assert not any("coating" in n or "filling" in n for n in p_names), (key, p_names)
+        assert "peanuts" in p_names and "sugar" in p_names and "peanuts sugar" not in p_names, (key, p_names)
+        assert not any("3593" in n for n in p_names), key
+        assert "edible vegetable fats dextrose" not in p_names and "dextrose" in p_names, (key, p_names)
+        assert not any(n in p_names for n in ("soy", "say", "milk", "peanut")), "Contains-line leaked"
+        assert any(str(i) == "tree nut" and i.trace for i in p_items), "may contain -> trace"
+        res = check_warnings(p_items, kb, clf, vec, {"allergies": ["soy", "peanut"], "conditions": []})
+        assert res.label_declares == ["peanut", "soy"], (key, res.label_declares)
+        assert not any("salfat" in r["ingredient"] and r["source"] == "ml_prediction" for r in res), \
+            "salfat must resolve through the KB alias"
+        print(f"  [{key}] soy+peanut user: Label declares: {', '.join(res.label_declares)}"
+              f" | score = {compute_health_score(res)}")
+    # each selected condition is counted once (15 each), not once per ingredient
+    res = check_warnings(parsed["photo ocr"], kb, clf, vec, {"allergies": [], "conditions": ["diabetes"]})
+    assert sum(1 for r in res if r["condition_warning"]) > 1, "several ingredients hit diabetes"
+    none = check_warnings(parsed["photo ocr"], kb, clf, vec, {"allergies": [], "conditions": []})
+    assert compute_health_score(none) - compute_health_score(res) == 15, "condition penalty must be applied once"
+    full = {"allergies": ["dairy", "soy", "peanut", "sulphites"], "conditions": ["diabetes", "hypertension"]}
+    res = check_warnings(parsed["photo ocr"], kb, clf, vec, full)
+    assert res.label_declares == ["dairy", "peanut", "soy"], res.label_declares
+    print("  [original profile: dairy+soy+peanut+sulphites, diabetes+hypertension] Label declares:",
+          ", ".join(res.label_declares), "| score =", compute_health_score(res))
+    # statement parsing: the soy fix must not touch ordinary ingredient text
+    assert [str(i) for i in clean_ingredient_text("ingredients: say cheese, sugar. Contains milk")] \
+        == ["say cheese", "sugar"], "no fuzzy matching on ordinary ingredient text"
     # INS range, heading typo, unrecognised items
     assert not any("3593" in str(i) or "3593" in "".join(i.ins_codes) for i in clean_ingredient_text(
         "Incredients: sugar, emulsifier (INS3593), colour (INS 3593), preservative (211)"))
