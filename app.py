@@ -79,6 +79,12 @@ if raw_text.strip():
 
         st.subheader("3. Warnings")
         shown = False
+        if getattr(results, "label_declares", None):        # red: "Contains ..." statement, listed once
+            shown = True
+            st.error(f"**Label declares:** {', '.join(results.label_declares)} — confirmed allergen(s)")
+        if getattr(results, "label_possible", None):
+            shown = True
+            st.warning(f"**Label declares (ambiguous):** {', '.join(results.label_possible)} — possible allergen")
         for r in results:                                   # red: confirmed allergens
             if r["allergen_warning"]:
                 shown = True
@@ -115,6 +121,9 @@ if raw_text.strip():
             "Notes": r["notes"],
         } for r in results])
         st.dataframe(table, use_container_width=True, hide_index=True)
+        junk = [r["ingredient"] for r in results if r.get("unrecognised")]
+        if junk:
+            st.caption("Unrecognised (probably OCR noise, not scored): " + ", ".join(junk))
 
         st.subheader("5. Health Score")
         st.metric("Health Score", f"{score} / 100")
