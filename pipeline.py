@@ -26,6 +26,7 @@ CONFIRMED_ALLERGEN_PENALTY = 20
 SOFT_ALLERGEN_PENALTY = 10   # possible or trace
 CONDITION_PENALTY = 15
 FUZZY_CUTOFF = 0.85
+JUNK_FUZZY_CUTOFF = 0.45     # ML-only items with no KB key this similar are treated as OCR noise
 
 # ----------------------------------------------------------------------------- OCR
 
@@ -64,6 +65,31 @@ class ParsedIngredient(str):
         obj.trace = bool(trace)
         obj.declared = bool(declared)
         return obj
+
+
+class ParsedLabel(list):
+    """List of ParsedIngredient plus the label's allergen statements (not ingredients).
+
+    .declared_allergens : allergen keys named in "Contains ..." (confirmed), e.g. ["dairy", "peanut", "soy"]
+    .declared_possible  : ambiguous ones named there (bare "nuts"): peanut / tree_nut as POSSIBLE
+    """
+    declared_allergens = ()
+    declared_possible = ()
+
+
+_IGNORE_CONTAINS = re.compile(r"\bvegetable\s+fats?\s+in\s+addition\s+to\s+cocoa\s+butter\b")
+
+
+def _allergen_pieces(part):
+    """'milk peanut' (comma lost by OCR) -> ['milk', 'peanut']; leaves 'tree nut' / 'wheat flour' alone."""
+    spans = sorted({(m.start(), m.end()) for pats in ALLERGEN_KEYWORDS.values()
+                    for pat in pats for m in re.finditer(pat, part)})
+    if len(spans) < 2 or any(a[1] > b[0] for a, b in zip(spans, spans[1:])):
+        return [part]
+    if re.sub(r"\s+", "", "".join(c if not any(a <= i < b for a, b in spans) else ""
+                                   for i, c in enumerate(part))):
+        return [part]
+    return [part[a:b] for a, b in spans]
 
 
 CLASS_WORDS = {
@@ -134,8 +160,11 @@ _KNOWN_AND_PHRASES = []      # filled from the KB by load_knowledge_base
 _KNOWN_KEYS = set()          # all KB names + aliases, filled by load_knowledge_base
 
 _SUFFIX = r"(\(\s*[ivx]+\s*\)|_[ivx]+|[a-z])"
-_INS_ONE = re.compile(r"^(?:ins|e)?\s*[-:]?\s*(\d{3,4})\s*" + _SUFFIX + r"?$")
-_INS_INLINE = re.compile(r"\b(?:ins|e)\s?[-:]?\s?(\d{3,4})(?:\s*(\(\s*[ivx]+\s*\)|_[ivx]+)|([a-z])\b)?", re.I)
+_INS_DIGITS = r"1[0-5]\d\d|[1-9]\d\d"            # valid INS numbers only: 100-1599
+_INS_NUM = r"(" + _INS_DIGITS + r")(?!\d)"
+_INS_ONE = re.compile(r"^(?:ins|e)?\s*[-:]?\s*" + _INS_NUM + r"\s*" + _SUFFIX + r"?$")
+_INS_INLINE = re.compile(r"\b(?:ins|e)\s?[-:]?\s?" + _INS_NUM + r"(?:\s*(\(\s*[ivx]+\s*\)|_[ivx]+)|([a-z])\b)?", re.I)
+_BAD_INS_NAME = re.compile(r"^(?:ins|e)[\s\-:]*\d+\s*(?:\(?[ivx]+\)?|[a-z])?$")   # e.g. "ins3593"
 
 
 def _norm_code(num, suffix=None):
@@ -150,15 +179,16 @@ def _inline_code(m):
     return _norm_code(m.group(1), m.group(2) or m.group(3))
 
 
-def _codes_from_list(text):
-    """If `text` is only INS codes (e.g. '211', 'ins 322(i)', '330, 331 and 332'), return them."""
+def _codes_from_list(text, allow_bare=True):
+    """If `text` is only INS codes (e.g. '211', 'ins 322(i)', '330, 331 and 332'), return them.
+    A bare number (no INS/E prefix) only counts when allow_bare (it follows an additive word)."""
     pieces = [p.strip() for p in re.split(r",|;|&|/|\band\b|\bor\b", text.lower()) if p.strip()]
     if not pieces:
         return None
     codes = []
     for p in pieces:
         m = _INS_ONE.match(p)
-        if not m:
+        if not m or not (allow_bare or re.match(r"(?:ins|e)\b|e\d", p)):
             return None
         codes.append(_norm_code(m.group(1), m.group(2)))
     return codes
@@ -183,7 +213,9 @@ def _split_top(text):
             depth = max(0, depth - 1)
         if depth == 0 and ch == ":":
             label = "".join(buf)
-            if len(label.split()) > 3:                       # "noodles:" / "colour:" are headings
+            if re.search(r"\(\s*[<>~]?\s*\d+(?:[.,]\d+)?\s*%\s*\)\s*$", label):
+                pass                                         # "centre filling (65%):" is a heading
+            elif len(label.split()) > 3:                     # "noodles:" / "colour:" are headings
                 parts.append(label)
             buf = []
         elif depth == 0 and ch in ",;":
@@ -227,7 +259,7 @@ def _first_bracket(text):
 
 def _tidy_name(text):
     t = text.lower().replace("\x01", "and")
-    t = re.sub(r"\b\d+(?:[.,]\d+)?\s*%", " ", t)                         # percentages
+    t = re.sub(r"[<>~]?\s*\b\d+(?:[.,]\d+)?\s*%", " ", t)               # percentages, "<5%" 
     t = re.sub(r"\b(?:min|max|approx)\.?\s*$", " ", t)
     t = re.sub(r"^\s*(?:and|or|with|of|from|as|for|to|contains?)\s+", "", t)
     t = re.sub(r"[\u2022*_~|]", " ", t)
@@ -241,6 +273,8 @@ def _emit(out, name, codes, trace):
     if not name and codes:
         name = "ins " + codes[0]
     if len(name) < 3 or not re.search(r"[a-z]", name):
+        return
+    if not codes and _BAD_INS_NAME.match(name):               # "ins3593": outside 100-1599
         return
     if name in DESCRIPTORS or name in _BARE_NUTRIENT:
         return
@@ -264,7 +298,8 @@ def _process_item(raw, out, trace):
         if not inner_nopct:                                  # "(15%)" etc.
             _process_item(parent, out, trace)
             return
-        codes = _codes_from_list(inner_c)
+        codes = _codes_from_list(inner_c, allow_bare=(not parent or parent in CLASS_WORDS
+                                                      or parent in _KNOWN_KEYS))
         if codes:
             if not parent or parent in CLASS_WORDS or len(codes) > 1:
                 label = parent or "ins"
@@ -291,7 +326,7 @@ def _process_item(raw, out, trace):
     # no brackets: INS codes written inline ("e211", "ins 322(i)", "preservative 211")
     low = item.lower()
     m = re.match(r"^\s*(" + "|".join(sorted(map(re.escape, CLASS_WORDS), key=len, reverse=True))
-                 + r")\s+(\d{3,4}[a-z]?)\s*$", low)
+                 + r")\s+((?:" + _INS_DIGITS + r")[a-z]?)(?!\d)\s*$", low)
     if m:
         _emit(out, f"{m.group(1)} ({m.group(2)})", [m.group(2)], trace)
         return
@@ -343,7 +378,7 @@ def _pull_segments(text, pattern):
 def parse_label_text(raw_text):
     """Full parser; returns a list of ParsedIngredient (name, .ins_codes, .trace)."""
     if not raw_text or not raw_text.strip():
-        return []
+        return ParsedLabel()
     text = raw_text.lower().replace("\r", "\n")
     text = re.sub(r"(\d{3,4})\s*\(\s*([ivx]+)\s*\)", r"\1_\2", text)   # 322(i) -> 322_i
     text = re.sub(r"\s&\s", " and ", text)
@@ -355,7 +390,7 @@ def parse_label_text(raw_text):
     text, contains_segs = _pull_segments(text, _CONTAINS)
 
     # 2. ingredient section
-    heading = re.search(r"\bingr\w{3,8}\b\s*[:\-–]?", text)
+    heading = re.search(r"\b(?:ingr\w{3,8}|incredients?)\b\s*[:\-–]?", text)   # also OCR "incredients"
     if heading:
         text = text[heading.end():]
     text = _cut_at_stops(text)
@@ -365,20 +400,25 @@ def parse_label_text(raw_text):
     lines = [ln for ln in lines if ln and not _is_table_row(ln)]
     body = " ".join(lines) if re.search(r"[,;]", " ".join(lines)) or len(lines) <= 1 \
         else ", ".join(lines)
+    # a percentage normally ends an item: "peanuts (21%) sugar" -> "peanuts (21%), sugar" (lost comma)
+    body = re.sub(r"(\d\s*%\s*\)?)[ \t]+(?=[a-z])(?!(?:of|and|or|w/w|w/v|by|added|approx|min|max|dry|per)\b)",
+                  r"\1, ", body)
 
     out = []
     for part in _split_top(_protect_and(body)):
         _process_item(part, out, trace=False)
+    # "Contains milk, peanut and soy" is a label allergen statement, not a list of ingredients
+    decl_conf, decl_poss = set(), set()
     for seg in contains_segs:
-        decl = []
-        for part in _split_top(_protect_and(seg)):
-            _process_item(part, decl, trace=False)
-        for d in decl:
-            d.declared = True
-        out.extend(decl)
+        seg = _IGNORE_CONTAINS.sub(" ", seg)
+        for part in _split_top(seg):                       # commas and "and"
+            conf, poss = keyword_allergens(part)
+            decl_conf |= conf
+            decl_poss |= poss
     for seg in trace_segs + fac_segs:
         for part in _split_top(_protect_and(seg)):
-            _process_item(part, out, trace=True)
+            for piece in _allergen_pieces(part):
+                _process_item(piece, out, trace=True)
 
     # 4. de-duplicate (a confirmed mention beats a trace mention of the same thing)
     merged = {}
@@ -394,7 +434,10 @@ def parse_label_text(raw_text):
             elif prev.declared and not it.declared:
                 it.ins_codes = sorted(set(it.ins_codes) | set(prev.ins_codes))
                 merged[key] = it
-    return list(merged.values())
+    label = ParsedLabel(merged.values())
+    label.declared_allergens = sorted(decl_conf)
+    label.declared_possible = sorted(decl_poss - decl_conf)
+    return label
 
 
 def clean_ingredient_text(raw_text):
@@ -406,6 +449,10 @@ def clean_ingredient_text(raw_text):
 
 def _clean_cell(v):
     return "" if pd.isna(v) else v
+
+
+# "sal fat" (a cocoa-butter equivalent, oil_fat category) is not in the KB: alias it to cocoa butter
+EXTRA_ALIASES = {"sal fat": "cocoa butter"}
 
 
 def load_knowledge_base(path=None):
@@ -429,6 +476,9 @@ def load_knowledge_base(path=None):
             a = re.sub(r"\s+", " ", a.strip().lower())
             if a and a not in kb:
                 kb[a] = info
+    for alias, canonical in EXTRA_ALIASES.items():           # code-level aliases; the CSV is not edited
+        if alias not in kb and canonical in kb:
+            kb[alias] = kb[canonical]
     _KNOWN_KEYS.clear()
     _KNOWN_KEYS.update(kb.keys())
     _KNOWN_AND_PHRASES[:] = [k for k in kb if re.search(r"\band\b", k) and "(" not in k]
@@ -580,7 +630,7 @@ ALLERGEN_KEYWORDS = {
               r"\bpaneer\b",
               # beyond the brief: obvious dairy words
               r"\bcheese\b", r"\byogh?urt\b", r"\blactose\b", r"\bdahi\b"],
-    "gluten": [r"\bwheat\b", r"\bmaida\b", r"\batta\b", r"\bbarley\b", r"\brye\b",
+    "gluten": [r"\bgluten\b", r"\bwheat\b", r"\bmaida\b", r"\batta\b", r"\bbarley\b", r"\brye\b",
                r"\bsemolina\b", r"\brava\b"],
     "soy": [r"\bsoy(?:a|abean|bean)?s?\b"],
     "egg": [r"\beggs?\b"],
@@ -608,6 +658,14 @@ def keyword_allergens(text):
     return confirmed, possible - confirmed
 
 
+def _looks_like_junk(name, kb):
+    """OCR noise: very short, no vowels, or nothing in the KB even loosely similar."""
+    letters = re.sub(r"[^a-z]", "", name.lower())
+    if len(letters) < 3 or not re.search(r"[aeiou]", letters):
+        return True
+    return not difflib.get_close_matches(name.lower(), list(kb.keys()), n=1, cutoff=JUNK_FUZZY_CUTOFF)
+
+
 def _short_notes(info, trace, possible_flag, tags):
     parts = []
     if info.get("risk_reason"):
@@ -625,6 +683,12 @@ def _short_notes(info, trace, possible_flag, tags):
     return "; ".join(parts)
 
 
+class ResultList(list):
+    """check_warnings result rows plus the label-level hits (allergens named in "Contains ...")."""
+    label_declares = ()      # selected allergens the label declares (confirmed)
+    label_possible = ()      # selected allergens declared only ambiguously (bare "nuts")
+
+
 def check_warnings(ingredient_list, kb, classifier, vectorizer, user_profile):
     """Check each ingredient against the user's selected allergies/conditions.
 
@@ -639,12 +703,22 @@ def check_warnings(ingredient_list, kb, classifier, vectorizer, user_profile):
     user_allergies = set(a.strip().lower() for a in user_profile.get("allergies", []))
     user_conditions = set(c.strip().lower() for c in user_profile.get("conditions", []))
 
-    results, index_by_key = [], {}
+    results, index_by_key = ResultList(), {}
+    declared = set(getattr(ingredient_list, "declared_allergens", ()) or ())
+    declared_poss = set(getattr(ingredient_list, "declared_possible", ()) or ())
+    results.label_declares = sorted(user_allergies & declared)                    # confirmed
+    results.label_possible = sorted((user_allergies & declared_poss) - set(results.label_declares))
     for ing in ingredient_list:
         name = str(ing)
         trace = bool(getattr(ing, "trace", False))
         codes = list(getattr(ing, "ins_codes", []) or [])
         info = match_ingredient(name, kb, classifier, vectorizer, ins_codes=codes)
+        unrecognised = (not trace and info.get("source") == "ml_prediction"
+                        and _looks_like_junk(name, kb))
+        if unrecognised:                                     # listed, but never penalised
+            info = {**info, "category": "unrecognised", "source": "unrecognised",
+                    "match_type": "none", "notes": "Unrecognised (looks like OCR noise); not scored",
+                    "match_note": "unrecognised: looks like OCR noise, not scored"}
 
         kb_tags = _split_tags(info.get("allergen_tags", ""))
         cond_tags = _split_tags(info.get("condition_tags", ""))
@@ -676,7 +750,8 @@ def check_warnings(ingredient_list, kb, classifier, vectorizer, user_profile):
             "declared": declared,
             # trace items and bare allergen declarations ("contains soy") that are not in the KB
             # are used for allergen warnings only: they do not add a risk deduction
-            "scored": not trace and not (declared and unresolved),
+            "scored": not trace and not unrecognised and not (declared and unresolved),
+            "unrecognised": unrecognised,
             "possible_allergen_flag": possible_flag,
             "allergen_warning": sorted(allergen_hit) or None,
             "possible_allergen_warning": sorted(possible_hit) or None,
@@ -693,6 +768,17 @@ def check_warnings(ingredient_list, kb, classifier, vectorizer, user_profile):
             continue
         index_by_key[key] = len(results)
         results.append(entry)
+
+    # report each allergen once: at its strongest level (label statement > confirmed > possible > trace)
+    owner = {a: (-1, -1) for a in results.label_declares + results.label_possible}
+    fields = ("allergen_warning", "possible_allergen_warning", "trace_allergen_warning")
+    for level, field in enumerate(fields):
+        for i, r in enumerate(results):
+            for a in r[field] or []:
+                owner.setdefault(a, (level, i))
+    for i, r in enumerate(results):
+        for level, field in enumerate(fields):
+            r[field] = sorted(a for a in (r[field] or []) if owner[a] == (level, i)) or None
     return results
 
 
@@ -701,7 +787,9 @@ def compute_health_score(results):
 
         score = 100
               - sum over ingredients of RISK_WEIGHTS[risk_level]       low 0, medium 5, high 15, unknown 3
-              - 20 per CONFIRMED allergen hit                          (allergies the user selected)
+              - 20 per CONFIRMED allergen hit                          (allergies the user selected;
+                                                                         each allergen counted once, incl.
+                                                                         "Contains ..." label statements)
               - 10 per POSSIBLE or TRACE allergen hit                  (allergies the user selected)
               - 15 per condition hit                                   (conditions the user selected)
 
@@ -713,6 +801,8 @@ def compute_health_score(results):
     the user's selected allergy.
     """
     score = 100
+    score -= CONFIRMED_ALLERGEN_PENALTY * len(getattr(results, "label_declares", ()))
+    score -= SOFT_ALLERGEN_PENALTY * len(getattr(results, "label_possible", ()))
     for r in results:
         if r.get("scored", not r.get("trace")):
             score -= RISK_WEIGHTS.get(r.get("risk_level"), 3)
