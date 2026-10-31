@@ -92,6 +92,80 @@ def _allergen_pieces(part):
     return [part[a:b] for a, b in spans]
 
 
+# Allergen words used ONLY to repair OCR typos inside "contains ..." / "may contain ..." statements
+ALLERGEN_WORDS = [
+    "milk", "whey", "casein", "lactose", "cheese", "peanut", "groundnut", "soy", "soya", "soybean",
+    "wheat", "gluten", "barley", "rye", "egg", "fish", "nut", "almond", "cashew", "walnut",
+    "pistachio", "hazelnut", "prawn", "shrimp", "crab", "sulphite", "sulfite",
+]
+_ALLERGEN_FORMS = {w + s for w in ALLERGEN_WORDS for s in ("", "s", "es")}
+_NOT_ALLERGEN = {
+    "and", "or", "may", "the", "also", "not", "nor", "for", "with", "when", "what", "that", "this",
+    "than", "less", "trace", "traces", "tree", "from", "made", "free", "such", "some", "other",
+    "only", "can", "all", "any", "ins", "contain", "contains",
+}
+ALLERGEN_FUZZY_CUTOFF = 0.75
+
+
+def _allergen_word(tok):
+    """Known allergen word this token is (or is an OCR typo of), else None.
+    Typos: difflib ratio >= 0.75, or - for 3-4 letter words such as soy/egg/nut/fish, where one
+    wrong letter already drops the ratio below 0.75 - same length, same first letter, one letter off
+    ('say', 'sov', 's0y' -> soy)."""
+    if len(tok) < 3 or not re.search(r"[a-z]", tok) or tok in _NOT_ALLERGEN:
+        return None
+    if tok in _ALLERGEN_FORMS:
+        return tok
+    close = difflib.get_close_matches(tok, ALLERGEN_WORDS, n=1, cutoff=ALLERGEN_FUZZY_CUTOFF)
+    if close:
+        return close[0]
+    for w in ALLERGEN_WORDS:
+        if (len(w) <= 4 and len(tok) == len(w) and tok[0] == w[0]
+                and sum(a != b for a, b in zip(tok, w)) == 1):
+            return w
+    return None
+
+
+def _correct_allergen_words(seg):
+    """Fix OCR typos of allergen words inside one contains / may-contain statement
+    ('say' -> 'soy', 'peanul' -> 'peanut'). Never used on ordinary ingredient text."""
+    def fix(m):
+        tok = m.group(0)
+        w = _allergen_word(tok)
+        return tok if (w is None or tok in _ALLERGEN_FORMS) else w
+    return re.sub(r"[a-z0-9]+", fix, seg)
+
+
+_STATEMENT = re.compile(r"\b(?:may\s+contain|contains?)\b")
+
+
+def _join_statement_lines(text):
+    """OCR often breaks the line inside an allergen statement ('Contains Milk, Peanut and' / 'Soy.').
+    Join the next line onto an unfinished 'contains ...' / 'may contain ...' line when that line ends
+    with a comma, 'and' or 'or', or the next line starts with an allergen word."""
+    lines, out, i = text.split("\n"), [], 0
+    while i < len(lines):
+        cur = lines[i]
+        while i + 1 < len(lines):
+            found = list(_STATEMENT.finditer(cur))
+            nxt = lines[i + 1].strip()
+            if not found or not nxt:
+                break
+            tail = cur[found[-1].end():]
+            if "." in tail:                                  # statement already finished
+                break
+            first = re.match(r"[a-z0-9]+", nxt)
+            if (re.search(r"(?:,|\band|\bor)\s*$", tail)
+                    or (first and "less than" not in tail and _allergen_word(first.group()))):
+                cur = cur.rstrip() + " " + nxt
+                i += 1
+            else:
+                break
+        out.append(cur)
+        i += 1
+    return "\n".join(out)
+
+
 CLASS_WORDS = {
     "preservative", "preservatives", "colour", "colours", "color", "colors",
     "emulsifier", "emulsifiers", "stabilizer", "stabilizers", "stabiliser", "stabilisers",
@@ -267,9 +341,14 @@ def _tidy_name(text):
     return t
 
 
+_HEADING_END = re.compile(r"\b(?:coating|filling|layer|base|centre|center)(?:\s*\(?\s*[<>~]?\s*\d+(?:[.,]\d+)?\s*%\s*\)?)?$")
+
+
 def _emit(out, name, codes, trace):
     name = _tidy_name(name)
     codes = list(codes)
+    if _HEADING_END.search(name) and name not in _KNOWN_KEYS:   # "milk chocolate coating (35%)" is a heading
+        return
     if not name and codes:
         name = "ins " + codes[0]
     if len(name) < 3 or not re.search(r"[a-z]", name):
@@ -292,6 +371,11 @@ def _process_item(raw, out, trace):
     br = _first_bracket(item)
     if br is not None:
         head, inner, tail = br
+        if re.match(r"\s*[a-z]", tail) and re.search(r"[,;]", inner) and not _codes_from_list(inner):
+            # sub-ingredient list followed directly by another item (lost comma): split there
+            _process_item(item[:len(item) - len(tail)], out, trace)
+            _process_item(tail, out, trace)
+            return
         parent = _tidy_name((head + " " + tail))
         inner_c = inner.strip()
         inner_nopct = _tidy_name(inner_c)
@@ -384,6 +468,7 @@ def parse_label_text(raw_text):
     text = re.sub(r"\s&\s", " and ", text)
 
     # 1. trace statements and "contains ..." statements, wherever they appear on the label
+    text = _join_statement_lines(text)
     text, trace_segs = _pull_segments(text, _MAY_CONTAIN)
     text, fac_segs = _pull_segments(text, _FACILITY)
     text = _ALLERGEN_HEADING.sub(" . ", text)
@@ -410,12 +495,13 @@ def parse_label_text(raw_text):
     # "Contains milk, peanut and soy" is a label allergen statement, not a list of ingredients
     decl_conf, decl_poss = set(), set()
     for seg in contains_segs:
-        seg = _IGNORE_CONTAINS.sub(" ", seg)
+        seg = _correct_allergen_words(_IGNORE_CONTAINS.sub(" ", seg))
         for part in _split_top(seg):                       # commas and "and"
             conf, poss = keyword_allergens(part)
             decl_conf |= conf
             decl_poss |= poss
     for seg in trace_segs + fac_segs:
+        seg = _correct_allergen_words(seg)
         for part in _split_top(_protect_and(seg)):
             for piece in _allergen_pieces(part):
                 _process_item(piece, out, trace=True)
@@ -791,7 +877,8 @@ def compute_health_score(results):
                                                                          each allergen counted once, incl.
                                                                          "Contains ..." label statements)
               - 10 per POSSIBLE or TRACE allergen hit                  (allergies the user selected)
-              - 15 per condition hit                                   (conditions the user selected)
+              - 15 per selected condition that has at least one hit    (each condition counted ONCE,
+                                                                         however many ingredients hit it)
 
     Notes: allergen/condition deductions exist only for what the user selected (check_warnings
     only reports those), and plain foods are never penalised just for being allergens (their
@@ -803,11 +890,13 @@ def compute_health_score(results):
     score = 100
     score -= CONFIRMED_ALLERGEN_PENALTY * len(getattr(results, "label_declares", ()))
     score -= SOFT_ALLERGEN_PENALTY * len(getattr(results, "label_possible", ()))
+    conditions_hit = set()
     for r in results:
         if r.get("scored", not r.get("trace")):
             score -= RISK_WEIGHTS.get(r.get("risk_level"), 3)
         score -= CONFIRMED_ALLERGEN_PENALTY * len(r.get("allergen_warning") or [])
         score -= SOFT_ALLERGEN_PENALTY * (len(r.get("possible_allergen_warning") or [])
                                           + len(r.get("trace_allergen_warning") or []))
-        score -= CONDITION_PENALTY * len(r.get("condition_warning") or [])
+        conditions_hit |= set(r.get("condition_warning") or [])
+    score -= CONDITION_PENALTY * len(conditions_hit)        # once per condition, not per ingredient
     return max(0, min(100, score))
