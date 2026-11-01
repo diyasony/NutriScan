@@ -484,6 +484,14 @@ def parse_label_text(raw_text):
     if not raw_text or not raw_text.strip():
         return ParsedLabel()
     text = raw_text.lower().replace("\r", "\n")
+    # OCR repairs on INS codes: "}" for ")", dropped "I" ("NS319"), a space inside the number ("INS1 450")
+    text = text.replace("}", ")").replace("{", "(")
+    text = re.sub(r"\bns(?=\d{3,4}\b)", "ins", text)
+
+    def _join_split_code(m):
+        joined = m.group(2) + m.group(3)
+        return m.group(1) + joined if 100 <= int(joined) <= 1599 and len(joined) in (3, 4) else m.group(0)
+    text = re.sub(r"\b(ins\s?|e(?=\d))(\d{1,3})[ ](\d{1,3})\b(?!\s*%)", _join_split_code, text)
     text = re.sub(r"(\d{3,4})\s*\(\s*([ivx]+)\s*\)", r"\1_\2", text)   # 322(i) -> 322_i
     text = re.sub(r"\s&\s", " and ", text)
 
