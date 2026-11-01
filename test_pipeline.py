@@ -96,6 +96,16 @@ Liquid glucose, Peanuts (21%), Sugar, Hydrogenated vegetable oil (Palm oil), Mil
 Iodized salt, Cocoa butter, Cocoa solids, Edible vegetable fats <5% (Sal fat, Palm oil),
 Dextrose, Emulsifier (INS 322).CONTAINS VEGETABLE FAT IN ADDITION TO COCOA BUTTER.
 Contains Milk, Peanut and Soy. May contain tree nut."""
+# The app's REAL raw OCR output for the label photo (copied from "Raw OCR text (for debugging)"):
+# one line, "(35%)" read as "(3593)", "(65%)" as "(659)", "(21%)" as "(21%6)", ":" for ".", no commas
+# in "Contains Milk Peanut and Soy:", "Palm oil" read as "Palmn oil".
+REAL_OCR = ("INGREDIENTS Milk chocolate coating (3593): Sugar; Milk solids, Cocoa butter; Cocoa solids; "
+            "Edible vegetable fats <5% (Salfat, Palm oil) Dextrose, Emulsifier (INS 322); Centre filling "
+            "(659): Liquid glucose, Peanuts (21%6) Sugar; Hydrogenated vegetable oil (Palm oil) Milk solids, "
+            "Iodized salt, Cocoa butter; Cocoa solids, Edible vegetable fats <5% (Salfat, Palmn oil) Dextrose, "
+            "Emulsifier (INS 322) CONTAINS VEGETABLE FAT IN ADDITION TO COCOA BUTTER: Contains Milk Peanut "
+            "and Soy: May contain tree nut")
+LABELS["photo ocr, REAL app output"] = REAL_OCR
 LABELS["photo ocr"] = PHOTO_OCR
 LABELS["photo ocr, split before Soy"] = PHOTO_OCR.replace("Peanut and Soy.", "Peanut and\nSoy.")
 LABELS["photo ocr, Soy read as Say"] = PHOTO_OCR.replace("Soy.", "Say.")
