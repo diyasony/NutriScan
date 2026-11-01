@@ -42,11 +42,31 @@ def _get_ocr_reader():
     return _OCR_READER
 
 
+def _prepare_image(image_path, max_side=1600):
+    """Load a phone photo as an RGB array: apply the EXIF rotation and shrink very large photos
+    (8 MB phone photos can crash EasyOCR's resize step with an empty crop)."""
+    import numpy as np
+    from PIL import Image, ImageOps
+    img = ImageOps.exif_transpose(Image.open(image_path)).convert("RGB")
+    w, h = img.size
+    scale = max_side / float(max(w, h))
+    if scale < 1:
+        img = img.resize((max(1, int(w * scale)), max(1, int(h * scale))), Image.LANCZOS)
+    return np.array(img)
+
+
 def extract_text_from_image(image_path):
-    """Extract text from a food label while preserving line breaks."""
+    """Extract text from a food label while preserving line breaks.
+    Tries a 1600 px version of the photo, then smaller ones, if EasyOCR/OpenCV fails."""
     reader = _get_ocr_reader()
-    results = reader.readtext(image_path, detail=0, paragraph=False)
-    return "\n".join(results)
+    last_error = None
+    for max_side in (1600, 1100, 800):
+        try:
+            results = reader.readtext(_prepare_image(image_path, max_side), detail=0, paragraph=False)
+            return "\n".join(results)
+        except Exception as e:           # e.g. cv2.error from an empty crop on a huge/odd photo
+            last_error = e
+    raise RuntimeError("Could not read this photo (" + str(last_error)[:120] + ")")
 
 
 # ----------------------------------------------------------------------------- cleaner
