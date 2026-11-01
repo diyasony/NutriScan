@@ -485,9 +485,13 @@ def parse_label_text(raw_text):
     lines = [ln for ln in lines if ln and not _is_table_row(ln)]
     body = " ".join(lines) if re.search(r"[,;]", " ".join(lines)) or len(lines) <= 1 \
         else ", ".join(lines)
+    # OCR garble of a percentage: "(21%6)" -> "(21%)"
+    body = re.sub(r"(\d)\s*%\s*\d\s*\)", r"\1%)", body)
     # a percentage normally ends an item: "peanuts (21%) sugar" -> "peanuts (21%), sugar" (lost comma)
     body = re.sub(r"(\d\s*%\s*\)?)[ \t]+(?=[a-z])(?!(?:of|and|or|w/w|w/v|by|added|approx|min|max|dry|per)\b)",
                   r"\1, ", body)
+    # a closing bracket followed directly by a word is also a lost comma: "(palm oil) milk solids"
+    body = re.sub(r"(\))[ \t]+(?=[a-z])(?!(?:of|and|or|w/w|w/v|by|per)\b)", r"\1, ", body)
 
     out = []
     for part in _split_top(_protect_and(body)):
@@ -496,12 +500,13 @@ def parse_label_text(raw_text):
     decl_conf, decl_poss = set(), set()
     for seg in contains_segs:
         seg = _correct_allergen_words(_IGNORE_CONTAINS.sub(" ", seg))
+        seg = re.sub(r"[:;]", ",", seg)                    # OCR often reads the final "." as ":"
         for part in _split_top(seg):                       # commas and "and"
             conf, poss = keyword_allergens(part)
             decl_conf |= conf
             decl_poss |= poss
     for seg in trace_segs + fac_segs:
-        seg = _correct_allergen_words(seg)
+        seg = re.sub(r"[:;]", ",", _correct_allergen_words(seg))
         for part in _split_top(_protect_and(seg)):
             for piece in _allergen_pieces(part):
                 _process_item(piece, out, trace=True)
