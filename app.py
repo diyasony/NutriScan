@@ -59,6 +59,9 @@ if mode == "Upload a photo":
         try:
             with st.spinner("Reading label..."):
                 raw_text = extract_text_from_image(tmp_path)
+        except Exception as e:
+            st.error("Sorry, this photo could not be read. Try a closer, well-lit photo of only the "
+                     "ingredient panel, or use 'Paste ingredient text'.  (" + str(e)[:150] + ")")
         finally:
             os.remove(tmp_path)
         with st.expander("Raw OCR text (for debugging)"):
