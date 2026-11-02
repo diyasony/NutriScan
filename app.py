@@ -130,6 +130,6 @@ if raw_text.strip():
 
         st.subheader("5. Health Score")
         st.metric("Health Score", f"{score} / 100")
-        st.caption("Starts at 100; minus risk points (medium 5, high 15, unknown 3), 20 per confirmed "
+        st.caption("Starts at 100; minus risk points (medium 5, high 15; unknown items 3 each, at most 15), 20 per confirmed "
                    "allergen hit, 10 per possible/trace hit, 15 per selected condition hit, counted once — only for what "
                    "you selected.")
