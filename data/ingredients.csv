@@ -1,8 +1,0 @@
-ingredient,category,ins_code,risk_level,allergen_tags,avoid_for
-sodium benzoate,preservative,211,medium,,
-maltodextrin,other,,medium,,diabetes
-soy lecithin,emulsifier,322,low,soy,
-milk solids,dairy,,,milk,
-sugar,sweetener,,,,
-wheat flour,grain/flour,,,wheat,
-citric acid,acidity regulator,330,low,,
