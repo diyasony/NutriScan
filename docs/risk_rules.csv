@@ -1,0 +1,11 @@
+risk_level,additive_class,ins_codes,basis
+high,synthetic azo / artificial colours,"INS 102, 110, 122, 124, 129",team rule
+high,"synthetic antioxidants BHA, BHT","INS 320, 321",team rule
+high,sodium benzoate,INS 211,team rule
+medium,sulphites,INS 220-228,team rule
+medium,nitrites / nitrates,INS 249-252 (none in current KB),team rule
+medium,artificial sweeteners,"INS 950, 951, 952, 954, 955",team rule
+medium,monosodium glutamate and other flavour enhancers,"INS 621, 627, 631, 635, 637",team rule
+medium,other synthetic preservatives / antioxidant-preservatives,"INS 200, 202, 210, 212, 280, 281, 282, 310, 319",team rule
+low,"everything else, incl. plain foods (milk, peanut, wheat flour)",all other rows,team rule
+note,allergen status never changes risk_level (handled per user in warnings),-,team rule

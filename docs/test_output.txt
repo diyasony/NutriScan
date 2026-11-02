@@ -1,0 +1,73 @@
+====================================================================================================
+BISCUIT  (16 items; * = trace / may-contain)
+  cleaned: ['refined wheat flour', 'maida', 'sugar', 'edible vegetable oil (palm)', 'invert syrup', 'milk solids', 'leavening agents (500(ii))', 'leavening agents (503(ii))', 'iodised salt', 'soy lecithin', 'ins 322(i)', 'added flavours (artificial flavouring substances - vanilla)', 'wheat', 'milk', 'soy', 'nuts*']
+  sources : {'wheat': 'ml_prediction', 'soy': 'ml_prediction', 'nuts': 'ml_prediction'}
+  [peanut-allergic user] score = 90
+     - nuts                                   TRACE allergen: peanut
+  [diabetic user] score = 55
+     - refined wheat flour                    condition: diabetes
+     - sugar                                  condition: diabetes
+     - invert syrup                           condition: diabetes
+====================================================================================================
+CHIPS  (16 items; * = trace / may-contain)
+  cleaned: ['potato', 'edible vegetable oil', 'palmolein', 'spices and condiments', 'chilli powder', 'onion powder', 'garlic powder', 'iodised salt', 'maltodextrin', 'flavour enhancer (621)', 'acidity regulator (330)', 'sugar', 'natural flavour', 'milk', 'peanuts*', 'soy*']
+  sources : {'soy': 'ml_prediction'}
+  [peanut-allergic user] score = 85
+     - peanuts                                TRACE allergen: peanut
+  [diabetic user] score = 65
+     - maltodextrin                           condition: diabetes
+     - sugar                                  condition: diabetes
+====================================================================================================
+INSTANT NOODLES  (25 items; * = trace / may-contain)
+  cleaned: ['wheat flour', 'palm oil', 'salt', 'wheat gluten', 'thickener (412)', 'acidity regulators (501(i))', 'calcium carbonate', 'antioxidant (319)', 'spices', 'onion powder', 'garlic powder', 'chilli powder', 'black pepper', 'sugar', 'hydrolysed soy protein', 'flavour enhancers (627)', 'flavour enhancers (631)', 'maltodextrin', 'colour (150d)', 'anticaking agent (551)', 'wheat', 'soy', 'peanuts*', 'milk*', 'eggs*']
+  sources : {'hydrolysed soy protein': 'ml_prediction', 'wheat': 'ml_prediction', 'soy': 'ml_prediction'}
+  [peanut-allergic user] score = 72
+     - peanuts                                TRACE allergen: peanut
+  [diabetic user] score = 52
+     - sugar                                  condition: diabetes
+     - maltodextrin                           condition: diabetes
+====================================================================================================
+FRUIT JUICE  (11 items; * = trace / may-contain)
+  cleaned: ['water', 'apple juice concentrate', 'sugar', 'acidity regulator (330)', 'preservative (211)', 'vitamin c', 'ascorbic acid', 'added flavour', 'nature identical flavouring substances', 'sodium benzoate', 'permitted synthetic food colour (110)']
+  sources : {}
+  [peanut-allergic user] score = 70
+     (no warnings)
+  [diabetic user] score = 55
+     - sugar                                  condition: diabetes
+====================================================================================================
+CHOCOLATE  (15 items; * = trace / may-contain)
+  cleaned: ['sugar', 'cocoa butter', 'milk solids', 'cocoa solids', 'hazelnut paste', 'soy lecithin', 'whey protein concentrate', 'skimmed milk powder', 'nature identical flavouring substances (vanillin)', 'milk', 'soy', 'hazelnut', 'peanuts*', 'almonds*', 'wheat*']
+  sources : {'hazelnut paste': 'ml_prediction', 'soy': 'ml_prediction', 'hazelnut': 'ml_prediction', 'wheat': 'ml_prediction'}
+  [peanut-allergic user] score = 87
+     - peanuts                                TRACE allergen: peanut
+  [diabetic user] score = 82
+     - sugar                                  condition: diabetes
+====================================================================================================
+BREAD  (18 items; * = trace / may-contain)
+  cleaned: ['whole wheat flour', 'atta', 'refined wheat flour', 'maida', 'water', 'sugar', 'yeast', 'edible vegetable oil', 'iodised salt', 'soy flour', 'wheat gluten', 'preservative (282)', 'emulsifiers (471)', 'emulsifiers (481(i))', 'flour treatment agent (300)', 'acidity regulator (260)', 'wheat', 'soy']
+  sources : {'wheat': 'ml_prediction', 'soy': 'ml_prediction'}
+  [peanut-allergic user] score = 95
+     (no warnings)
+  [diabetic user] score = 65
+     - refined wheat flour                    condition: diabetes
+     - sugar                                  condition: diabetes
+====================================================================================================
+NAMKEEN  (15 items; * = trace / may-contain)
+  cleaned: ['besan', 'gram flour', 'peanuts', 'edible vegetable oil', 'palmolein', 'rice flour', 'moth dal', 'iodised salt', 'spices and condiments', 'citric acid', 'sugar', 'curry leaves', 'turmeric powder', 'nuts*', 'mustard*']
+  sources : {'moth dal': 'ml_prediction', 'curry leaves': 'ml_prediction', 'nuts': 'ml_prediction', 'mustard': 'ml_prediction'}
+  [peanut-allergic user] score = 64
+     - peanuts                                CONFIRMED allergen: peanut
+     - nuts                                   TRACE allergen: peanut
+  [diabetic user] score = 79
+     - sugar                                  condition: diabetes
+====================================================================================================
+ICE CREAM  (19 items; * = trace / may-contain)
+  cleaned: ['milk', 'sugar', 'cream', 'skimmed milk powder', 'liquid glucose', 'edible vegetable fat', 'emulsifier (471)', 'stabilizers (412)', 'stabilizers (407)', 'stabilizers (410)', 'permitted natural colour (160b)', 'added flavour', 'nature identical flavouring substances', 'mono and diglycerides of fatty acids', 'egg yolk powder', 'egg', 'nuts*', 'wheat*', 'soy*']
+  sources : {'edible vegetable fat': 'ml_prediction', 'egg yolk powder': 'ml_prediction', 'nuts': 'ml_prediction', 'wheat': 'ml_prediction', 'soy': 'ml_prediction'}
+  [peanut-allergic user] score = 84
+     - nuts                                   TRACE allergen: peanut
+  [diabetic user] score = 64
+     - sugar                                  condition: diabetes
+     - liquid glucose                         condition: diabetes
+
+All assertions passed.

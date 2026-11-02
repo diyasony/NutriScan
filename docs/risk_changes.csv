@@ -1,0 +1,16 @@
+ingredient_name,ins_code,risk_level_v1,risk_level,risk_reason
+sorbic acid,INS200,low,medium,team rule: other synthetic preservative/antioxidant
+potassium sorbate,INS202,low,medium,team rule: other synthetic preservative/antioxidant
+propionic acid,INS280,low,medium,team rule: other synthetic preservative/antioxidant
+quinoline yellow,INS104,medium,low,team rule: additive not in a listed risk class (default low)
+erythrosine,INS127,medium,low,team rule: additive not in a listed risk class (default low)
+indigotine,INS132,medium,low,team rule: additive not in a listed risk class (default low)
+brilliant blue fcf,INS133,medium,low,team rule: additive not in a listed risk class (default low)
+fast green fcf,INS143,medium,low,team rule: additive not in a listed risk class (default low)
+caramel iii,INS150c,medium,low,team rule: additive not in a listed risk class (default low)
+caramel iv,INS150d,medium,low,team rule: additive not in a listed risk class (default low)
+titanium dioxide,INS171,medium,low,team rule: additive not in a listed risk class (default low)
+polysorbate 20,INS432,medium,low,team rule: additive not in a listed risk class (default low)
+polysorbate 80,INS433,medium,low,team rule: additive not in a listed risk class (default low)
+carrageenan,INS407,medium,low,team rule: additive not in a listed risk class (default low)
+ethyl maltol,INS637,low,medium,team rule: flavour enhancer
