@@ -25,6 +25,7 @@ RISK_WEIGHTS = {"low": 0, "medium": 5, "high": 15, "unknown": 3}
 CONFIRMED_ALLERGEN_PENALTY = 20
 SOFT_ALLERGEN_PENALTY = 10   # possible or trace
 CONDITION_PENALTY = 15
+UNKNOWN_PENALTY_CAP = 15      # total deduction for "unknown" items is capped (noisy OCR makes many)
 FUZZY_CUTOFF = 0.85
 JUNK_FUZZY_CUTOFF = 0.45     # ML-only items with no KB key this similar are treated as OCR noise
 
@@ -905,7 +906,8 @@ def compute_health_score(results):
     """Rule-based score, start at 100 and subtract (clamped to 0-100):
 
         score = 100
-              - sum over ingredients of RISK_WEIGHTS[risk_level]       low 0, medium 5, high 15, unknown 3
+              - sum over ingredients of RISK_WEIGHTS[risk_level]       low 0, medium 5, high 15
+              - 3 per "unknown" item, capped at 15 in total             (noisy OCR can create many)
               - 20 per CONFIRMED allergen hit                          (allergies the user selected;
                                                                          each allergen counted once, incl.
                                                                          "Contains ..." label statements)
@@ -921,15 +923,21 @@ def compute_health_score(results):
     the user's selected allergy.
     """
     score = 100
+    unknown_points = 0
     score -= CONFIRMED_ALLERGEN_PENALTY * len(getattr(results, "label_declares", ()))
     score -= SOFT_ALLERGEN_PENALTY * len(getattr(results, "label_possible", ()))
     conditions_hit = set()
     for r in results:
         if r.get("scored", not r.get("trace")):
-            score -= RISK_WEIGHTS.get(r.get("risk_level"), 3)
+            pts = RISK_WEIGHTS.get(r.get("risk_level"), 3)
+            if r.get("risk_level") in RISK_WEIGHTS and r.get("risk_level") != "unknown":
+                score -= pts
+            else:
+                unknown_points += pts
         score -= CONFIRMED_ALLERGEN_PENALTY * len(r.get("allergen_warning") or [])
         score -= SOFT_ALLERGEN_PENALTY * (len(r.get("possible_allergen_warning") or [])
                                           + len(r.get("trace_allergen_warning") or []))
         conditions_hit |= set(r.get("condition_warning") or [])
+    score -= min(unknown_points, UNKNOWN_PENALTY_CAP)       # unknown items: 3 each, at most 15 in total
     score -= CONDITION_PENALTY * len(conditions_hit)        # once per condition, not per ingredient
     return max(0, min(100, score))
